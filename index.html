@@ -1,0 +1,1991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Way Coaching Classes — Your's Success is Our's Target</title>
+<link rel="icon" type="image/png" href="images/logo-full.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+:root{
+  --navy-950:#0d0d3d;
+  --navy-900:#12134f;
+  --navy-800:#1b1d6e;
+  --navy-700:#262a8c;
+  --navy-600:#3438a8;
+  --navy-100:#e7e8f7;
+  --navy-50:#f3f3fc;
+  --yellow-500:#ffd400;
+  --yellow-400:#ffdf33;
+  --yellow-300:#ffe866;
+  --yellow-100:#fff7cf;
+  --ink:#101024;
+  --paper:#f6f6fb;
+  --card:#ffffff;
+  --gray-500:#6b6b82;
+  --gray-300:#c9c9dc;
+  --gray-200:#e3e3ef;
+  --green:#1f9d55;
+  --red:#e2432a;
+  --orange:#e8890c;
+  --radius:14px;
+  --shadow:0 2px 10px rgba(18,19,79,.06), 0 1px 2px rgba(18,19,79,.08);
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;max-width:100%;overflow-x:hidden;}
+body{
+  font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--yellow-300);}
+a{text-decoration:none;color:inherit;}
+button{font-family:inherit;cursor:pointer;}
+::-webkit-scrollbar{width:8px;height:8px;}
+::-webkit-scrollbar-thumb{background:var(--gray-300);border-radius:8px;}
+
+#app{display:flex;min-height:100vh;}
+
+.sidebar{
+  width:250px;flex-shrink:0;background:linear-gradient(195deg,var(--navy-900),var(--navy-950));
+  color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;
+}
+.brand{display:flex;align-items:center;gap:10px;padding:20px 18px 14px;border-bottom:1px solid rgba(255,255,255,.08);}
+.brand-mark{width:38px;height:38px;border-radius:10px;background:var(--yellow-500);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--navy-950);font-size:16px;flex-shrink:0;}
+.brand-text{line-height:1.15;}
+.brand-text b{font-size:14.5px;letter-spacing:.3px;}
+.brand-text span{font-size:10px;color:var(--yellow-400);display:block;text-transform:uppercase;letter-spacing:1px;margin-top:2px;}
+
+.role-switch{display:flex;gap:4px;padding:12px;background:rgba(0,0,0,.15);margin:10px 12px;border-radius:10px;}
+.role-switch button{flex:1;background:transparent;border:none;color:rgba(255,255,255,.65);font-size:11.5px;font-weight:600;padding:7px 4px;border-radius:7px;transition:.15s;}
+.role-switch button.active{background:var(--yellow-500);color:var(--navy-950);}
+
+.nav-group{padding:8px 10px;}
+.nav-label{font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:rgba(255,255,255,.35);padding:12px 10px 4px;font-weight:700;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:9px;font-size:13.5px;color:rgba(255,255,255,.82);margin-bottom:2px;transition:.12s;cursor:pointer;}
+.nav-item:hover{background:rgba(255,255,255,.07);color:#fff;}
+.nav-item.active{background:var(--yellow-500);color:var(--navy-950);font-weight:700;}
+.nav-icon{width:18px;text-align:center;flex-shrink:0;}
+.nav-badge{margin-left:auto;background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:20px;}
+.nav-item.active .nav-badge{background:var(--navy-950);color:#fff;}
+
+.sidebar-footer{margin-top:auto;padding:14px 16px;border-top:1px solid rgba(255,255,255,.08);font-size:11px;color:rgba(255,255,255,.4);}
+
+.main{flex:1;min-width:0;display:flex;flex-direction:column;}
+.topbar{
+  background:#fff;border-bottom:1px solid var(--gray-200);padding:14px 26px;
+  display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;
+}
+.topbar h1{font-size:19px;margin:0;font-weight:800;color:var(--navy-900);}
+.topbar .sub{font-size:12.5px;color:var(--gray-500);margin-top:2px;}
+.topbar-right{display:flex;align-items:center;gap:14px;}
+.icon-btn{width:36px;height:36px;border-radius:10px;background:var(--navy-50);border:1px solid var(--gray-200);display:flex;align-items:center;justify-content:center;font-size:15px;position:relative;}
+.dot{position:absolute;top:5px;right:6px;width:7px;height:7px;background:var(--red);border-radius:50%;border:2px solid #fff;}
+.avatar{width:36px;height:36px;border-radius:50%;background:var(--yellow-500);color:var(--navy-950);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;}
+
+.content{padding:22px 26px 60px;max-width:1400px;width:100%;margin:0 auto;}
+
+.grid{display:grid;gap:16px;}
+.grid-4{grid-template-columns:repeat(4,1fr);}
+.grid-3{grid-template-columns:repeat(3,1fr);}
+.grid-2{grid-template-columns:repeat(2,1fr);}
+@media(max-width:1100px){.grid-4{grid-template-columns:repeat(2,1fr);}.grid-3{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:700px){.grid-4,.grid-3,.grid-2{grid-template-columns:1fr;}}
+
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--gray-200);padding:18px;}
+.card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:10px;flex-wrap:wrap;}
+.card-head h3{margin:0;font-size:15px;font-weight:800;color:var(--navy-900);}
+.card-head .sub{font-size:12px;color:var(--gray-500);margin-top:1px;}
+
+.stat-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--gray-200);padding:16px 18px;position:relative;overflow:hidden;}
+.stat-card .top{display:flex;justify-content:space-between;align-items:flex-start;}
+.stat-card .ic{width:34px;height:34px;border-radius:9px;background:var(--yellow-100);color:var(--navy-800);display:flex;align-items:center;justify-content:center;font-size:16px;}
+.stat-card .val{font-size:25px;font-weight:800;color:var(--navy-950);margin-top:10px;}
+.stat-card .lbl{font-size:12.5px;color:var(--gray-500);margin-top:2px;}
+.stat-card .trend{font-size:11px;font-weight:700;margin-top:8px;}
+.trend.up{color:var(--green);}
+.trend.down{color:var(--red);}
+.stat-card::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--yellow-500);}
+
+.btn{display:inline-flex;align-items:center;gap:7px;padding:9px 15px;border-radius:9px;font-size:13px;font-weight:700;border:1px solid transparent;transition:.12s;white-space:nowrap;}
+.btn-primary{background:var(--navy-900);color:#fff;}
+.btn-primary:hover{background:var(--navy-800);}
+.btn-accent{background:var(--yellow-500);color:var(--navy-950);}
+.btn-accent:hover{background:var(--yellow-400);}
+.btn-outline{background:#fff;color:var(--navy-900);border-color:var(--gray-300);}
+.btn-outline:hover{border-color:var(--navy-700);}
+.btn-sm{padding:6px 11px;font-size:12px;border-radius:7px;}
+.btn-ghost{background:transparent;color:var(--navy-700);}
+.btn-danger{background:#fdeceb;color:var(--red);}
+
+.quick-actions{display:flex;flex-wrap:wrap;gap:10px;}
+
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap;}
+.badge.blue{background:var(--navy-100);color:var(--navy-800);}
+.badge.yellow{background:var(--yellow-100);color:#8a6d00;}
+.badge.green{background:#e4f6ea;color:var(--green);}
+.badge.red{background:#fdeceb;color:var(--red);}
+.badge.gray{background:var(--gray-200);color:var(--gray-500);}
+.badge.orange{background:#fdf1e0;color:var(--orange);}
+
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{text-align:left;color:var(--gray-500);font-size:11px;text-transform:uppercase;letter-spacing:.5px;padding:9px 10px;border-bottom:2px solid var(--gray-200);white-space:nowrap;}
+td{padding:11px 10px;border-bottom:1px solid var(--gray-200);}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:var(--navy-50);}
+.table-wrap{overflow-x:auto;}
+
+.list-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--gray-200);flex-wrap:wrap;}
+.list-row:last-child{border-bottom:none;}
+.list-icon{width:36px;height:36px;border-radius:9px;background:var(--navy-50);color:var(--navy-800);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px;font-weight:700;}
+
+.tabs{display:flex;gap:4px;background:var(--navy-50);border-radius:10px;padding:4px;margin-bottom:18px;width:fit-content;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;color:var(--gray-500);border:none;background:transparent;}
+.tab-btn.active{background:#fff;color:var(--navy-900);box-shadow:var(--shadow);}
+
+.progress-bar{height:9px;background:var(--gray-200);border-radius:20px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--navy-700),var(--yellow-500));border-radius:20px;}
+
+.section-title{font-size:20px;font-weight:800;color:var(--navy-950);margin:0 0 4px;}
+.section-desc{font-size:13px;color:var(--gray-500);margin:0 0 18px;}
+
+.input,select,textarea{width:100%;padding:9px 12px;border:1px solid var(--gray-300);border-radius:8px;font-size:13px;background:#fff;color:var(--ink);font-family:inherit;}
+.input:focus,select:focus,textarea:focus{outline:2px solid var(--yellow-500);border-color:var(--navy-700);}
+.field{margin-bottom:12px;}
+.field label{display:block;font-size:12px;font-weight:700;color:var(--navy-900);margin-bottom:5px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px;}
+@media(max-width:700px){.form-grid{grid-template-columns:1fr;}}
+
+.chip-row{display:flex;flex-wrap:wrap;gap:8px;}
+.chip{padding:6px 12px;border-radius:20px;background:var(--navy-50);border:1px solid var(--gray-200);font-size:12px;font-weight:600;color:var(--navy-800);}
+
+.alert-box{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:10px;background:#fdf1e0;border:1px solid #f5dcae;margin-bottom:12px;}
+.alert-box.red{background:#fdeceb;border-color:#f6cac3;}
+.alert-box .ic{font-size:18px;}
+.alert-box b{color:var(--navy-950);}
+
+.modal-overlay{position:fixed;inset:0;background:rgba(13,13,61,.45);display:flex;align-items:center;justify-content:center;z-index:100;padding:20px;}
+.modal{background:#fff;border-radius:16px;padding:24px;max-width:560px;width:100%;max-height:85vh;overflow-y:auto;}
+.modal h3{margin:0 0 4px;font-size:17px;color:var(--navy-950);}
+.modal .close{float:right;cursor:pointer;font-size:20px;color:var(--gray-500);}
+
+.avatar-lg{width:88px;height:88px;border-radius:18px;background:var(--yellow-500);color:var(--navy-950);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:30px;flex-shrink:0;}
+
+.msg-bubble{padding:12px 14px;border-radius:12px;background:var(--navy-50);margin-bottom:10px;max-width:80%;}
+.msg-bubble.sent{background:var(--navy-900);color:#fff;margin-left:auto;}
+.msg-meta{font-size:10.5px;color:var(--gray-500);margin-top:4px;}
+.msg-bubble.sent .msg-meta{color:rgba(255,255,255,.6);}
+
+.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
+.cal-cell{aspect-ratio:1;border-radius:8px;background:var(--navy-50);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--navy-800);position:relative;padding:4px;}
+.cal-cell.holiday{background:#fdeceb;color:var(--red);}
+.cal-cell.exam{background:var(--yellow-100);color:#8a6d00;}
+
+.empty-state{text-align:center;padding:40px 20px;color:var(--gray-500);}
+.empty-state .ic{font-size:34px;margin-bottom:10px;}
+
+.hamburger{display:none;background:none;border:none;font-size:20px;color:var(--navy-900);}
+@media(max-width:900px){
+  .sidebar{position:fixed;left:-260px;top:0;z-index:200;transition:.2s;box-shadow:0 0 40px rgba(0,0,0,.3);}
+  .sidebar.open{left:0;}
+  .hamburger{display:block;}
+  .content{padding:16px;}
+}
+.brand-logo-img{height:46px;width:auto;display:block;background:#fff;border-radius:10px;padding:5px 10px;}
+
+/* ---- General micro-animations ---- */
+@keyframes contentFadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.content{animation:contentFadeIn .35s ease both;}
+.card,.stat-card{transition:transform .18s ease,box-shadow .18s ease;}
+.card:hover,.stat-card:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(18,19,79,.10);}
+.nav-item{transition:background .15s ease,transform .15s ease,color .15s ease;}
+.nav-item:hover{transform:translateX(3px);}
+.btn{transition:transform .14s ease,box-shadow .14s ease,background .14s ease;}
+.btn:active{transform:scale(.96);}
+.btn-primary:hover,.btn-accent:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(13,13,61,.18);}
+.list-row{transition:background .15s ease;}
+.list-row:hover{background:var(--navy-50);border-radius:8px;}
+.avatar,.brand-logo-img{transition:transform .2s ease;}
+.avatar:hover{transform:scale(1.06);}
+.progress-fill{transition:width .6s cubic-bezier(.22,1,.36,1);}
+@keyframes badgePop{from{transform:scale(.7);opacity:0;}to{transform:scale(1);opacity:1;}}
+.badge{animation:badgePop .25s ease both;}
+.modal{animation:contentFadeIn .25s ease both;}
+.modal-overlay{animation:lpFadeOverlay .2s ease both;}
+@keyframes lpFadeOverlay{from{opacity:0;}to{opacity:1;}}
+.sidebar .nav-group{animation:contentFadeIn .4s ease both;}
+#toast{animation:toastRise .3s ease both;}
+@keyframes toastRise{from{opacity:0;transform:translate(-50%,10px);}to{opacity:1;transform:translate(-50%,0);}}
+
+/* ---- Icon image sizing across contexts ---- */
+.ic-img{width:16px;height:16px;object-fit:contain;vertical-align:middle;display:inline-block;margin-bottom:2px;}
+.nav-icon .ic-img{width:16px;height:16px;margin-bottom:0;}
+.list-icon .ic-img{width:19px;height:19px;margin-bottom:0;}
+.stat-card .ic .ic-img{width:19px;height:19px;margin-bottom:0;}
+.icon-btn .ic-img{width:16px;height:16px;margin-bottom:0;}
+.btn .ic-img{width:14px;height:14px;margin-bottom:0;}
+.lp-why-card .ic .ic-img{width:26px;height:26px;margin-bottom:0;}
+.lp-eyebrow .ic-img{width:14px;height:14px;margin-right:2px;margin-bottom:0;}
+.lp-milestone .ic-img{width:15px;height:15px;margin-right:3px;margin-bottom:0;}
+.empty-state .ic .ic-img{width:30px;height:30px;margin-bottom:0;}
+.alert-box .ic .ic-img{width:18px;height:18px;margin-bottom:0;}
+h3 .ic-img,.card-head .ic-img{width:16px;height:16px;margin-bottom:0;}
+.logout-btn{width:36px;height:36px;border-radius:10px;background:#fdeceb;border:1px solid #f6cac3;color:var(--red);display:flex;align-items:center;justify-content:center;font-size:15px;}
+
+/* ============================================================
+   CUSTOM CURSOR
+   ============================================================ */
+body.custom-cursor,body.custom-cursor *{cursor:none !important;}
+#cursorDot{position:fixed;left:0;top:0;width:7px;height:7px;background:var(--yellow-500);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);}
+#cursorRing{position:fixed;left:0;top:0;width:34px;height:34px;border:1.5px solid rgba(255,212,0,.55);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .22s ease,height .22s ease,border-color .22s ease,background-color .22s ease;}
+#cursorRing.cur-hover{width:58px;height:58px;background:rgba(255,212,0,.10);border-color:var(--yellow-500);}
+@media(hover:none),(pointer:coarse){
+  #cursorDot,#cursorRing{display:none !important;}
+  body.custom-cursor,body.custom-cursor *{cursor:auto !important;}
+}
+
+/* ============================================================
+   PUBLIC SITE (Landing + Login)
+   ============================================================ */
+.lp{--lp-navy:#0d0d3d;--lp-navy2:#151760;--lp-yellow:#ffd400;font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;color:#151735;background:#fbfbfe;overflow-x:hidden;}
+.lp h1,.lp h2,.lp h3,.lp .lp-display{font-family:'Sora',sans-serif;}
+.lp a{color:inherit;}
+.lp section{position:relative;}
+.lp .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+@keyframes lpFadeUp{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:translateY(0);}}
+.lp-reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;}
+.lp-reveal.in-view{opacity:1;transform:translateY(0);}
+.lp-reveal.d1{transition-delay:.08s;}.lp-reveal.d2{transition-delay:.16s;}.lp-reveal.d3{transition-delay:.24s;}.lp-reveal.d4{transition-delay:.32s;}
+
+/* --- Header --- */
+.lp-header{position:fixed;top:0;left:0;right:0;z-index:500;padding:16px 0;transition:.25s;}
+.lp-header .wrap{display:flex;align-items:center;justify-content:space-between;}
+.lp-header-inner{display:flex;align-items:center;gap:12px;}
+.lp-header.scrolled{background:rgba(13,13,61,.92);backdrop-filter:blur(10px);box-shadow:0 4px 24px rgba(0,0,0,.18);padding:10px 0;}
+.lp-logo{display:flex;align-items:center;gap:10px;}
+.lp-logo img{height:44px;width:auto;background:#fff;border-radius:9px;padding:4px 9px;transition:.25s;}
+.lp-header.scrolled .lp-logo img{height:36px;}
+.lp-nav{display:flex;align-items:center;gap:30px;}
+.lp-nav a{font-size:14px;font-weight:600;color:#fff;opacity:.82;position:relative;padding:4px 0;}
+.lp-nav a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--lp-yellow,#ffd400);transition:.25s;}
+.lp-nav a:hover{opacity:1;}
+.lp-nav a:hover::after{width:100%;}
+.lp-portal-btn{background:var(--lp-yellow,#ffd400);color:var(--lp-navy,#0d0d3d);font-weight:800;font-size:13.5px;padding:10px 20px;border-radius:30px;border:none;letter-spacing:.2px;box-shadow:0 6px 18px rgba(255,212,0,.25);}
+.lp-portal-btn:hover{background:#fff;}
+.lp-burger{display:none;background:none;border:none;color:#fff;font-size:22px;}
+@media(max-width:860px){.lp-nav{position:fixed;top:0;right:-100%;width:78%;max-width:320px;height:100vh;background:var(--lp-navy,#0d0d3d);flex-direction:column;justify-content:center;gap:26px;transition:.3s;}
+  .lp-nav.open{right:0;}.lp-nav a{font-size:16px;}.lp-burger{display:block;}}
+
+/* --- Hero --- */
+.lp-hero{min-height:100vh;background:radial-gradient(120% 90% at 15% 0%,#1c1e78 0%,var(--lp-navy,#0d0d3d) 55%,#08082a 100%);color:#fff;display:flex;align-items:center;padding:130px 0 80px;overflow:hidden;}
+.lp-hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;position:relative;z-index:2;}
+.lp-blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.35;animation:lpFloat 9s ease-in-out infinite;}
+.lp-blob.b1{width:340px;height:340px;background:#3a3ecf;top:-80px;right:-60px;}
+.lp-blob.b2{width:260px;height:260px;background:var(--lp-yellow,#ffd400);opacity:.14;bottom:-60px;left:10%;animation-delay:2s;}
+@keyframes lpFloat{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-24px) scale(1.06);}}
+.lp-spark{position:absolute;border-radius:50%;background:var(--lp-yellow,#ffd400);pointer-events:none;animation:lpSpark linear infinite;}
+@keyframes lpSpark{0%{transform:translateY(0) translateX(0);opacity:0;}10%{opacity:.85;}90%{opacity:.5;}100%{transform:translateY(-140px) translateX(12px);opacity:0;}}
+.lp-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,212,0,.12);border:1px solid rgba(255,212,0,.35);color:var(--lp-yellow,#ffd400);font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:7px 14px;border-radius:30px;margin-bottom:20px;}
+.lp-hero h1{font-size:46px;line-height:1.12;font-weight:800;margin:0 0 18px;letter-spacing:-.5px;}
+.lp-hero h1 em{font-style:normal;color:var(--lp-yellow,#ffd400);}
+.lp-hero p.lead{font-size:16px;line-height:1.7;color:rgba(255,255,255,.72);max-width:480px;margin:0 0 30px;}
+.lp-btn-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:42px;}
+.lp-btn{padding:14px 26px;border-radius:32px;font-weight:800;font-size:14px;border:none;display:inline-flex;align-items:center;gap:8px;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;}
+.lp-btn-primary{background:var(--lp-yellow,#ffd400);color:var(--lp-navy,#0d0d3d);box-shadow:0 10px 24px rgba(255,212,0,.28);}
+.lp-btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(255,212,0,.38);}
+.lp-btn:active{transform:scale(.96);}
+.lp-btn-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35);}
+.lp-btn-outline:hover{border-color:#fff;transform:translateY(-3px);}
+.lp-portal-btn{transition:transform .18s ease,background .18s ease;}
+.lp-portal-btn:hover{transform:translateY(-2px);}
+.lp-stats{display:flex;gap:34px;flex-wrap:wrap;}
+.lp-stats div b{display:block;font-family:'Sora',sans-serif;font-size:26px;font-weight:800;color:#fff;}
+.lp-stats div span{font-size:12px;color:rgba(255,255,255,.55);}
+
+@media(max-width:860px){
+  .lp-hero{padding:150px 0 50px;}
+  .lp-hero .wrap{grid-template-columns:1fr;gap:6px;text-align:center;}
+  .lp-hero h1{font-size:34px;}
+  .lp-hero p.lead{margin-left:auto;margin-right:auto;}
+  .lp-btn-row{justify-content:center;}
+  .lp-stats{justify-content:center;}
+  .lp-road-wrap{height:360px;margin-top:18px;}
+}
+@media(max-width:480px){
+  .lp-hero h1{font-size:28px;}
+  .lp-road-wrap{height:300px;}
+  .lp-milestone{font-size:11px;padding:8px 11px;}
+}
+
+/* --- Road signature visual --- */
+.lp-road-wrap{position:relative;height:480px;}
+.lp-road-wrap svg{width:100%;height:100%;overflow:visible;}
+.lp-road-path{fill:none;stroke:#12134f;stroke-width:46;stroke-linecap:round;}
+.lp-road-edge{fill:none;stroke:rgba(255,255,255,.18);stroke-width:48;stroke-linecap:round;}
+.lp-road-lane{fill:none;stroke:var(--lp-yellow,#ffd400);stroke-width:5;stroke-linecap:round;stroke-dasharray:16 18;animation:lpDash 1.6s linear infinite;}
+@keyframes lpDash{to{stroke-dashoffset:-68;}}
+.lp-cap{transform-origin:center;animation:lpBob 3s ease-in-out infinite;}
+@keyframes lpBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.lp-milestone{position:absolute;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(6px);border-radius:12px;padding:10px 14px;font-size:12px;font-weight:700;color:#fff;animation:lpFloat 6s ease-in-out infinite;}
+
+/* --- Section headers --- */
+.lp-sec-head{text-align:center;max-width:640px;margin:0 auto 46px;}
+.lp-kicker{display:inline-block;font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy-700);background:var(--navy-100);padding:6px 14px;border-radius:20px;margin-bottom:14px;}
+.lp-sec-head h2{font-size:32px;font-weight:800;margin:0 0 12px;color:var(--lp-navy,#0d0d3d);letter-spacing:-.3px;}
+.lp-sec-head p{font-size:15px;color:#666a86;line-height:1.6;margin:0;}
+
+/* --- Courses --- */
+.lp-courses{padding:100px 0 90px;background:#fbfbfe;}
+.lp-course-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;}
+@media(max-width:1000px){.lp-course-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:640px){.lp-course-grid{grid-template-columns:repeat(2,1fr);}}
+.lp-course-card{background:#fff;border:1px solid #eaeaf5;border-radius:18px;padding:22px 18px;text-align:center;transition:.25s;position:relative;}
+.lp-course-card:hover{transform:translateY(-6px);box-shadow:0 18px 34px rgba(13,13,61,.10);border-color:transparent;}
+.lp-course-card .grade{font-family:'Sora',sans-serif;font-size:30px;font-weight:800;color:var(--lp-navy,#0d0d3d);}
+.lp-course-card .grade span{font-size:13px;font-weight:700;color:#9a9ab8;display:block;margin-top:-2px;}
+.lp-course-card .subs{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:14px 0 16px;}
+.lp-course-card .subs span{font-size:10.5px;font-weight:700;background:var(--navy-100);color:var(--navy-800);padding:4px 9px;border-radius:20px;}
+.lp-course-card a{font-size:12.5px;font-weight:800;color:var(--lp-navy,#0d0d3d);border-bottom:2px solid var(--lp-yellow,#ffd400);padding-bottom:2px;}
+
+/* --- Exams --- */
+.lp-exams{padding:90px 0;background:linear-gradient(180deg,#f3f3fc,#fbfbfe);}
+.lp-exam-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+@media(max-width:900px){.lp-exam-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.lp-exam-grid{grid-template-columns:1fr;}}
+.lp-exam-card{background:var(--lp-navy,#0d0d3d);border-radius:18px;padding:24px;color:#fff;position:relative;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease;}
+.lp-exam-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(13,13,61,.28);}
+.lp-exam-card::after{content:"";position:absolute;right:-30px;bottom:-30px;width:120px;height:120px;background:radial-gradient(circle,rgba(255,212,0,.18),transparent 70%);}
+.lp-exam-card .tag{display:inline-block;background:rgba(255,212,0,.15);color:var(--lp-yellow,#ffd400);font-size:11px;font-weight:800;letter-spacing:.5px;padding:4px 10px;border-radius:20px;margin-bottom:12px;}
+.lp-exam-card h4{margin:0 0 8px;font-size:19px;font-family:'Sora',sans-serif;}
+.lp-exam-card p{margin:0;font-size:13px;color:rgba(255,255,255,.65);line-height:1.6;}
+
+/* --- Why us --- */
+.lp-why{padding:90px 0;background:#fff;}
+.lp-why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+@media(max-width:900px){.lp-why-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.lp-why-grid{grid-template-columns:1fr;}}
+.lp-why-card{text-align:left;padding:8px 0;}
+.lp-why-card .ic{width:52px;height:52px;border-radius:14px;background:var(--navy-100);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px;}
+.lp-why-card h4{margin:0 0 8px;font-size:15.5px;font-family:'Sora',sans-serif;color:var(--lp-navy,#0d0d3d);}
+.lp-why-card p{margin:0;font-size:13px;color:#70738f;line-height:1.6;}
+
+/* --- CTA / Enquiry --- */
+.lp-cta{padding:90px 0;background:var(--lp-navy,#0d0d3d);color:#fff;}
+.lp-cta .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
+@media(max-width:860px){.lp-cta .wrap{grid-template-columns:1fr;}}
+.lp-cta h2{font-size:30px;margin:0 0 14px;font-family:'Sora',sans-serif;}
+.lp-cta p{color:rgba(255,255,255,.68);font-size:14.5px;line-height:1.7;max-width:420px;}
+.lp-form{background:#fff;border-radius:18px;padding:26px;color:#151735;box-shadow:0 30px 60px rgba(0,0,0,.35);}
+.lp-form .field{margin-bottom:13px;}
+.lp-form label{display:block;font-size:12px;font-weight:800;margin-bottom:5px;color:var(--lp-navy,#0d0d3d);}
+.lp-form input,.lp-form select,.lp-form textarea{width:100%;padding:11px 13px;border:1.5px solid #e4e4f2;border-radius:9px;font-size:13.5px;font-family:inherit;}
+.lp-form input:focus,.lp-form select:focus{outline:none;border-color:var(--lp-yellow,#ffd400);}
+.lp-form button{width:100%;margin-top:6px;padding:13px;border-radius:10px;border:none;background:var(--lp-navy,#0d0d3d);color:#fff;font-weight:800;font-size:14px;}
+.lp-form button:hover{background:#22245a;}
+
+/* --- Footer --- */
+.lp-footer{background:#08082a;color:rgba(255,255,255,.55);padding:56px 0 20px;font-size:13px;}
+.lp-footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;}
+@media(max-width:700px){.lp-footer .wrap{grid-template-columns:1fr;gap:28px;}}
+.lp-footer img{height:76px;width:auto;margin-bottom:12px;background:#fff;border-radius:10px;padding:6px;}
+.lp-footer h5{color:#fff;font-size:13px;margin:0 0 14px;letter-spacing:.5px;text-transform:uppercase;}
+.lp-footer ul{list-style:none;padding:0;margin:0;}
+.lp-footer li{margin-bottom:9px;}
+.lp-footer li a:hover{color:var(--lp-yellow,#ffd400);}
+.lp-footer-bottom{border-top:1px solid rgba(255,255,255,.08);margin-top:40px;padding-top:18px;text-align:center;font-size:12px;color:rgba(255,255,255,.35);}
+
+/* --- Login Page --- */
+.lp-login-wrap{min-height:100vh;background:radial-gradient(120% 90% at 15% 0%,#1c1e78 0%,var(--lp-navy,#0d0d3d) 55%,#08082a 100%);display:flex;align-items:center;justify-content:center;padding:30px;position:relative;overflow:hidden;}
+.lp-login-card{background:#fff;border-radius:22px;padding:38px 34px;width:100%;max-width:400px;box-shadow:0 30px 80px rgba(0,0,0,.4);position:relative;z-index:2;}
+.lp-login-card img{height:70px;display:block;margin:0 auto 18px;}
+.lp-login-card h2{text-align:center;font-size:20px;margin:0 0 4px;color:var(--lp-navy,#0d0d3d);font-family:'Sora',sans-serif;}
+.lp-login-card p.sub{text-align:center;font-size:12.5px;color:#8687a3;margin:0 0 24px;}
+.lp-role-tabs{display:flex;background:var(--navy-50);border-radius:10px;padding:4px;margin-bottom:20px;}
+.lp-role-tabs button{flex:1;border:none;background:transparent;padding:8px 6px;border-radius:7px;font-size:12.5px;font-weight:700;color:#70738f;}
+.lp-role-tabs button.active{background:var(--lp-navy,#0d0d3d);color:#fff;}
+.lp-login-card .field{margin-bottom:15px;}
+.lp-login-card label{display:block;font-size:12px;font-weight:800;color:var(--lp-navy,#0d0d3d);margin-bottom:6px;}
+.lp-login-card input{width:100%;padding:11px 13px;border:1.5px solid #e4e4f2;border-radius:9px;font-size:13.5px;font-family:inherit;}
+.lp-login-card input:focus{outline:none;border-color:var(--yellow-500);}
+.lp-login-btn{width:100%;padding:13px;border:none;border-radius:10px;background:var(--yellow-500);color:var(--lp-navy,#0d0d3d);font-weight:800;font-size:14px;margin-top:6px;}
+.lp-login-btn:hover{background:#ffdf33;}
+.lp-login-error{background:#fdeceb;color:var(--red);border:1px solid #f6cac3;font-size:12.5px;font-weight:700;padding:9px 12px;border-radius:8px;margin-bottom:14px;text-align:center;}
+.lp-back-home{position:absolute;top:26px;left:26px;color:rgba(255,255,255,.7);font-size:13px;font-weight:700;z-index:3;display:flex;align-items:center;gap:6px;}
+.lp-back-home:hover{color:#fff;}
+.lp-demo-hint{margin-top:18px;background:var(--navy-50);border-radius:10px;padding:10px 12px;font-size:11.5px;color:#70738f;line-height:1.6;}
+.lp-demo-hint b{color:var(--lp-navy,#0d0d3d);}
+
+/* ---- Local asset safety ---- */
+img.ic-img,.brand-logo-img,.lp-logo img,.lp-footer img,.lp-login-card img{object-fit:contain;}
+img{max-width:100%;}
+.asset-missing{display:none!important;}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+
+/* Local asset path fallback */
+document.addEventListener('error', function(e){
+  const img=e.target;
+  if(img && img.tagName==='IMG' && img.getAttribute('src') && !img.dataset.retried){
+    const src=img.getAttribute('src');
+    if(src.startsWith('images/')){
+      img.dataset.retried='1';
+      img.src='./'+src;
+    }
+  }
+}, true);
+
+/* ================= AUTH ================= */
+const CREDENTIALS = {
+  admin:  {username:"admin",   password:"admin@123",   name:"Admin Office"},
+  teacher:{username:"teacher", password:"teacher@123", name:"Mrs. Anjali Sharma"},
+  parent: {username:"parent",  password:"parent@123",  name:"Rohit's Parent"},
+};
+let nextStudentSeq = 107;
+
+/* ================= MOCK DATA ================= */
+const DB = {
+  teacher:{name:"Mrs. Anjali Sharma",id:"NWC-T-014",qualification:"M.Sc. Mathematics, B.Ed.",experience:"8 years",subjects:["Mathematics","Science"],classes:["Class 9","Class 10"],batches:["Batch A (Morning)","Batch C (Evening)"],phone:"+91 98290 11234",email:"anjali.sharma@newwaycoaching.in",joining:"12 June 2018"},
+  batches:["Batch A (Morning)","Batch B (Afternoon)","Batch C (Evening)"],
+  classBatches:["Class 8","Class 9","Class 10","Class 11","Class 12"],
+  attendanceRecords:{},
+  classesToday:[
+    {time:"08:00 AM",cls:"Class 10",batch:"Batch A",subject:"Mathematics",room:"Room 2",topic:"Quadratic Equations",status:"Completed"},
+    {time:"10:30 AM",cls:"Class 9",batch:"Batch C",subject:"Science",room:"Room 4",topic:"Chemical Reactions",status:"Ongoing"},
+    {time:"02:00 PM",cls:"Class 10",batch:"Batch B",subject:"Mathematics",room:"Room 2",topic:"Trigonometry Basics",status:"Upcoming"},
+    {time:"04:30 PM",cls:"Class 9",batch:"Batch A",subject:"Science",room:"Room 1",topic:"Light — Reflection",status:"Upcoming"},
+  ],
+  lectures:[
+    {date:"22 Aug",time:"08:00 AM",cls:"Class 10",batch:"Batch A",subject:"Mathematics",teacher:"Anjali Sharma",room:"Room 2",topic:"Quadratic Equations",status:"Completed"},
+    {date:"22 Aug",time:"10:30 AM",cls:"Class 9",batch:"Batch C",subject:"Science",teacher:"Anjali Sharma",room:"Room 4",topic:"Chemical Reactions",status:"Ongoing"},
+    {date:"22 Aug",time:"02:00 PM",cls:"Class 10",batch:"Batch B",subject:"Mathematics",teacher:"Anjali Sharma",room:"Room 2",topic:"Trigonometry Basics",status:"Upcoming"},
+    {date:"23 Aug",time:"08:00 AM",cls:"Class 10",batch:"Batch A",subject:"Mathematics",teacher:"Anjali Sharma",room:"Room 2",topic:"Quadratic Eq. — Practice",status:"Upcoming"},
+    {date:"21 Aug",time:"10:30 AM",cls:"Class 9",batch:"Batch C",subject:"Science",teacher:"Anjali Sharma",room:"Room 4",topic:"Atoms & Molecules",status:"Cancelled"},
+  ],
+  notices:[
+    {title:"Parent-Teacher Meeting on 30 Aug",tag:"Event",date:"Aug 20"},
+    {title:"Diwali vacation from 8–12 Nov",tag:"Holiday",date:"Aug 19"},
+    {title:"Unit Test 2 syllabus released",tag:"Academic",date:"Aug 18"},
+  ],
+  students:[
+    {id:"NWC-S-101",name:"Rohit Verma",cls:"Class 10",batch:"Batch A",attendance:92,fees:"Paid",feeAmount:4500,lastTest:88,homework:"Complete",trend:"up",parent:"Suresh Verma",phone:"+91 98290 22101"},
+    {id:"NWC-S-102",name:"Priya Nair",cls:"Class 10",batch:"Batch A",attendance:78,fees:"Pending",feeAmount:4500,lastTest:64,homework:"1 Missing",trend:"down",parent:"Ramesh Nair",phone:"+91 98290 22102"},
+    {id:"NWC-S-103",name:"Karan Mehta",cls:"Class 10",batch:"Batch B",attendance:65,fees:"Pending",feeAmount:4500,lastTest:42,homework:"3 Missing",trend:"down",parent:"Vinod Mehta",phone:"+91 98290 22103"},
+    {id:"NWC-S-104",name:"Simran Kaur",cls:"Class 9",batch:"Batch C",attendance:96,fees:"Paid",feeAmount:4000,lastTest:95,homework:"Complete",trend:"up",parent:"Harpreet Kaur",phone:"+91 98290 22104"},
+    {id:"NWC-S-105",name:"Aditya Rao",cls:"Class 9",batch:"Batch C",attendance:71,fees:"Paid",feeAmount:4000,lastTest:58,homework:"Complete",trend:"flat",parent:"Srinivas Rao",phone:"+91 98290 22105"},
+    {id:"NWC-S-106",name:"Neha Joshi",cls:"Class 10",batch:"Batch B",attendance:88,fees:"Paid",feeAmount:4500,lastTest:76,homework:"Complete",trend:"up",parent:"Manoj Joshi",phone:"+91 98290 22106"},
+  ],
+  syllabus:[
+    {cls:"Class 10",subject:"Mathematics",chapters:[
+      {name:"Real Numbers",status:"Completed"},{name:"Polynomials",status:"Completed"},
+      {name:"Linear Equations",status:"Completed"},{name:"Quadratic Equations",status:"In Progress"},
+      {name:"Arithmetic Progressions",status:"Not Started"},{name:"Triangles",status:"Not Started"},
+      {name:"Trigonometry",status:"Not Started"},
+    ],expected:"18 Dec 2026"},
+    {cls:"Class 9",subject:"Science",chapters:[
+      {name:"Matter in Our Surroundings",status:"Completed"},{name:"Atoms & Molecules",status:"Completed"},
+      {name:"Chemical Reactions",status:"In Progress"},{name:"Motion",status:"Not Started"},
+      {name:"Force & Laws of Motion",status:"Not Started"},
+    ],expected:"05 Jan 2027"},
+  ],
+  materials:[
+    {title:"Quadratic Equations — Full Notes",type:"PDF",cls:"Class 10",subject:"Mathematics",chapter:"Quadratic Equations",batch:"All",size:"1.2 MB"},
+    {title:"Trigonometry Practice Sheet",type:"Worksheet",cls:"Class 10",subject:"Mathematics",chapter:"Trigonometry",batch:"Batch A",size:"640 KB"},
+    {title:"Chemical Reactions — Sample Paper",type:"Sample Paper",cls:"Class 9",subject:"Science",chapter:"Chemical Reactions",batch:"Batch C",size:"890 KB"},
+    {title:"Important Questions — Unit 2",type:"Important Qs",cls:"Class 9",subject:"Science",chapter:"Atoms & Molecules",batch:"All",size:"410 KB"},
+    {title:"Algebra Revision Video",type:"Video Link",cls:"Class 10",subject:"Mathematics",chapter:"Polynomials",batch:"All",size:"Link"},
+  ],
+  tests:[
+    {name:"Unit Test 2",type:"Unit Test",subject:"Mathematics",cls:"Class 10",batch:"Batch A",date:"28 Aug 2026",duration:"90 min",total:50,passing:18,status:"Scheduled"},
+    {name:"Monthly Test — August",type:"Monthly Test",subject:"Science",cls:"Class 9",batch:"Batch C",date:"25 Aug 2026",duration:"60 min",total:40,passing:14,status:"Scheduled"},
+    {name:"Weekly Test 6",type:"Weekly Test",subject:"Mathematics",cls:"Class 10",batch:"Batch B",date:"15 Aug 2026",duration:"30 min",total:20,passing:8,status:"Completed"},
+    {name:"Half Yearly Mock",type:"Mock Test",subject:"All Subjects",cls:"Class 10",batch:"All",date:"10 Sep 2026",duration:"180 min",total:100,passing:33,status:"Scheduled"},
+  ],
+  questionBank:[
+    {q:"Solve: x² − 5x + 6 = 0",subject:"Mathematics",chapter:"Quadratic Equations",type:"Descriptive",marks:4,diff:"Medium"},
+    {q:"The discriminant of ax²+bx+c=0 is:",subject:"Mathematics",chapter:"Quadratic Equations",type:"MCQ",marks:1,diff:"Easy"},
+    {q:"Balance the equation: Fe + O₂ → Fe₂O₃",subject:"Science",chapter:"Chemical Reactions",type:"Descriptive",marks:3,diff:"Medium"},
+    {q:"Which of these is an exothermic reaction?",subject:"Science",chapter:"Chemical Reactions",type:"MCQ",marks:1,diff:"Easy"},
+    {q:"Derive the quadratic formula from ax²+bx+c=0.",subject:"Mathematics",chapter:"Quadratic Equations",type:"Descriptive",marks:5,diff:"Hard"},
+  ],
+  marks:[
+    {rank:1,name:"Simran Kaur",cls:"Class 9",marks:95,total:100,grade:"A+"},
+    {rank:2,name:"Rohit Verma",cls:"Class 10",marks:88,total:100,grade:"A"},
+    {rank:3,name:"Neha Joshi",cls:"Class 10",marks:76,total:100,grade:"B+"},
+    {rank:4,name:"Aditya Rao",cls:"Class 9",marks:58,total:100,grade:"C"},
+    {rank:5,name:"Priya Nair",cls:"Class 10",marks:64,total:100,grade:"B-"},
+    {rank:6,name:"Karan Mehta",cls:"Class 10",marks:42,total:100,grade:"D"},
+  ],
+  attention:[
+    {name:"Karan Mehta",reasons:["Low attendance (65%)","Test marks dropping","2 fee payments pending"]},
+    {name:"Priya Nair",reasons:["1 homework missing","Marks declined from 82 to 64"]},
+    {name:"Aditya Rao",reasons:["Attendance below 75% threshold"]},
+  ],
+  remarks:[
+    {student:"Rohit Verma",remark:"Excellent performance in Unit Test 2. Keep it up!",date:"20 Aug",private:true},
+    {student:"Karan Mehta",remark:"Needs more practice with quadratic equations. Please review homework daily.",date:"19 Aug",private:true},
+    {student:"Priya Nair",remark:"Attendance has dropped this month — please improve.",date:"17 Aug",private:true},
+  ],
+  leaves:[
+    {student:"Rohit Verma",date:"25 Aug 2026",reason:"Family function",status:"Pending"},
+    {student:"Simran Kaur",date:"27 Aug 2026",reason:"Medical appointment",status:"Approved"},
+    {student:"Aditya Rao",date:"22 Aug 2026",reason:"Not feeling well",status:"Rejected"},
+  ],
+  holidays:[
+    {date:"15 Aug",title:"Independence Day",type:"Public Holiday"},
+    {date:"30 Aug",title:"Parent-Teacher Meeting",type:"Event"},
+    {date:"02 Sep",title:"Unit Test 2 (Class 10)",type:"Exam"},
+    {date:"08 Nov",title:"Diwali Break Begins",type:"Coaching Holiday"},
+    {date:"25 Dec",title:"Christmas",type:"Public Holiday"},
+  ],
+  admissions:[
+    {id:"NWC-S-107",name:"Ishaan Gupta",cls:"Class 9",course:"Foundation",status:"Approved",date:"18 Aug"},
+    {id:"—",name:"Meher Kapoor",cls:"Class 10",course:"Board Prep",status:"Pending",date:"20 Aug"},
+    {id:"—",name:"Devika Rao",cls:"Class 8",course:"Foundation",status:"Pending",date:"21 Aug"},
+  ],
+  enquiries:[
+    {name:"Yash Malhotra",phone:"98xxxxxx12",parent:"Sunita Malhotra",cls:"Class 10",course:"Board Prep",source:"Walk-in",date:"19 Aug",followup:"23 Aug",status:"Follow-up Due"},
+    {name:"Tanvi Singh",phone:"97xxxxxx45",parent:"Rakesh Singh",cls:"Class 9",course:"Foundation",source:"Reference",date:"20 Aug",followup:"24 Aug",status:"New"},
+    {name:"Arjun Deshmukh",phone:"99xxxxxx88",parent:"Meena Deshmukh",cls:"Class 11",course:"JEE Foundation",source:"Instagram Ad",date:"15 Aug",followup:"18 Aug",status:"Converted"},
+  ],
+  messages:[
+    {from:"Mrs. Anjali Sharma",text:"Reminder: Unit Test 2 is scheduled for 28 Aug. Please ensure Rohit revises Chapters 1–4.",time:"Today, 9:12 AM",sent:false},
+    {from:"You (Parent)",text:"Noted, thank you ma'am. He has started revising.",time:"Today, 9:40 AM",sent:true},
+    {from:"Mrs. Anjali Sharma",text:"Fee reminder: ₹4,500 pending for August, due by 25 Aug.",time:"Yesterday, 4:20 PM",sent:false},
+  ],
+  parentChild:{name:"Rohit Verma",cls:"Class 10 — Batch A",attendance:92,pendingFees:"₹0",nextTest:"Unit Test 2 — 28 Aug",timetable:[
+    {day:"Mon",subject:"Mathematics",time:"8:00–9:00 AM"},{day:"Tue",subject:"Science",time:"10:30–11:30 AM"},
+    {day:"Wed",subject:"Mathematics",time:"8:00–9:00 AM"},{day:"Thu",subject:"Science",time:"10:30–11:30 AM"},
+    {day:"Fri",subject:"Mathematics",time:"8:00–9:00 AM"},
+  ]},
+};
+
+const ICONS = {
+  dash:"<img src='images/bar-graph.png' class='ic-img' alt=''>",profile:"<img src='images/graduate-avatar.png' class='ic-img' alt=''>",classes:"<img src='images/schedule.png' class='ic-img' alt=''>",planner:"<img src='images/schedule.png' class='ic-img' alt=''>",syllabus:"<img src='images/book.png' class='ic-img' alt=''>",materials:"<img src='images/book.png' class='ic-img' alt=''>",tests:"<img src='images/education.png' class='ic-img' alt=''>",qbank:"<img src='images/book.png' class='ic-img' alt=''>",
+  marks:"<img src='images/trophy-star.png' class='ic-img' alt=''>",analytics:"<img src='images/bar-graph.png' class='ic-img' alt=''>",rank:"<img src='images/trophy-star.png' class='ic-img' alt=''>",attention:"<img src='images/clock (1).png' class='ic-img' alt=''>",comm:"<img src='images/chat.png' class='ic-img' alt=''>",remarks:"<img src='images/contract.png' class='ic-img' alt=''>",attendance:"<img src='images/check.png' class='ic-img' alt=''>",leave:"<img src='images/book.png' class='ic-img' alt=''>",
+  holiday:"<img src='images/calendar.png' class='ic-img' alt=''>",admission:"<img src='images/graduate-avatar.png' class='ic-img' alt=''>",enquiry:"<img src='images/phone.png' class='ic-img' alt=''>",parentDash:"<img src='images/house.png' class='ic-img' alt=''>",bell:"<img src='images/clock (1).png' class='ic-img' alt=''>",fee:"<img src='images/fees.png' class='ic-img' alt=''>",
+};
+
+/* ================= APP STATE ================= */
+let state={authed:false,view:"landing",loginRole:"admin",loginError:"",role:"teacher",page:"dash",sidebarOpen:false,modal:null,tab:{},navOpen:false,feeFilter:"All",attendanceBatch:null,attendanceDate:todayISO()};
+function todayISO(){const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,'0')+"-"+String(d.getDate()).padStart(2,'0');}
+
+const NAV = {
+  teacher:[
+    {group:"Overview",items:[
+      {id:"dash",label:"Dashboard",icon:ICONS.dash},
+      {id:"profile",label:"My Profile",icon:ICONS.profile},
+    ]},
+    {group:"Teaching",items:[
+      {id:"attendance",label:"Take Attendance",icon:ICONS.attendance},
+      {id:"classes",label:"Classes & Lectures",icon:ICONS.classes},
+      {id:"planner",label:"Teaching Planner",icon:ICONS.planner},
+      {id:"syllabus",label:"Syllabus Tracking",icon:ICONS.syllabus},
+      {id:"materials",label:"Study Materials",icon:ICONS.materials},
+    ]},
+    {group:"Assessment",items:[
+      {id:"tests",label:"Tests & Exams",icon:ICONS.tests},
+      {id:"qbank",label:"Question Papers",icon:ICONS.qbank},
+      {id:"marks",label:"Marks Entry",icon:ICONS.marks},
+      {id:"analytics",label:"Performance Analytics",icon:ICONS.analytics},
+      {id:"rank",label:"Student Ranking",icon:ICONS.rank},
+    ]},
+    {group:"Student Care",items:[
+      {id:"attention",label:"Attention Required",icon:ICONS.attention,badge:DB.attention.length},
+      {id:"remarks",label:"Teacher Remarks",icon:ICONS.remarks},
+      {id:"attendanceAlerts",label:"Attendance Alerts",icon:ICONS.attendance},
+      {id:"leave",label:"Leave Requests",icon:ICONS.leave},
+    ]},
+    {group:"Communication",items:[
+      {id:"comm",label:"Announcements",icon:ICONS.comm},
+    ]},
+  ],
+  parent:[
+    {group:"Overview",items:[{id:"parentDash",label:"Dashboard",icon:ICONS.parentDash}]},
+    {group:"Academics",items:[
+      {id:"parentAttendance",label:"Attendance",icon:ICONS.attendance},
+      {id:"parentHomework",label:"Homework",icon:ICONS.syllabus},
+      {id:"parentResults",label:"Test Results",icon:ICONS.marks},
+      {id:"parentReport",label:"Performance Report",icon:ICONS.analytics},
+    ]},
+    {group:"Administration",items:[
+      {id:"parentFees",label:"Fees",icon:ICONS.fee},
+      {id:"parentTimetable",label:"Timetable",icon:ICONS.classes},
+      {id:"parentNotices",label:"Notices",icon:"<img src='images/chat.png' class='ic-img' alt=''>"},
+      {id:"parentLeave",label:"Apply for Leave",icon:ICONS.leave},
+      {id:"holiday",label:"Holiday Calendar",icon:ICONS.holiday},
+    ]},
+    {group:"Communication",items:[
+      {id:"parentMsg",label:"Messages",icon:"<img src='images/chat (1).png' class='ic-img' alt=''>"},
+      {id:"parentRemarks",label:"Teacher Remarks",icon:ICONS.remarks},
+    ]},
+  ],
+  admin:[
+    {group:"Students & Fees",items:[
+      {id:"attendance",label:"Take Attendance",icon:ICONS.attendance},
+      {id:"studentMgmt",label:"Student Management",icon:"<img src='images/graduate-avatar.png' class='ic-img' alt=''>"},
+      {id:"feeMgmt",label:"Fee Management",icon:ICONS.fee},
+    ]},
+    {group:"Admissions",items:[
+      {id:"admission",label:"Admission Management",icon:ICONS.admission},
+      {id:"enquiry",label:"Enquiries / Leads",icon:ICONS.enquiry},
+    ]},
+    {group:"Operations",items:[
+      {id:"adminLeave",label:"Leave Management",icon:ICONS.leave},
+      {id:"holiday",label:"Holiday Calendar",icon:ICONS.holiday},
+      {id:"adminAttendance",label:"Attendance Overview",icon:ICONS.attendance},
+    ]},
+  ],
+};
+
+const DEFAULT_PAGE={teacher:"dash",parent:"parentDash",admin:"studentMgmt"};
+
+/* ================= PUBLIC CONTENT DATA ================= */
+const COURSES = [
+  {grade:"8",tag:"Foundation",subs:["Science","Mathematics"]},
+  {grade:"9",tag:"Foundation",subs:["Science","Mathematics"]},
+  {grade:"10",tag:"Board Prep",subs:["Science","Mathematics"]},
+  {grade:"11",tag:"Sr. Secondary",subs:["Science","Mathematics"]},
+  {grade:"12",tag:"Board Prep",subs:["Science","Mathematics"]},
+];
+const EXAMS = [
+  {tag:"State Board",name:"RBSE Board Excellence",desc:"Focused, syllabus-mapped coaching for Rajasthan Board Class 10 & 12 students, built around board exam patterns."},
+  {tag:"Civil Services",name:"UPSC / RPSC",desc:"Foundation and mains-level guidance for UPSC Civil Services and Rajasthan Public Service Commission aspirants."},
+  {tag:"Engineering",name:"JEE Main & Advanced",desc:"Physics, Chemistry & Maths taken deep for students targeting IITs, NITs and top engineering colleges."},
+  {tag:"Medical",name:"NEET (UG)",desc:"Biology-intensive track with regular NEET-pattern tests for future doctors."},
+  {tag:"Govt. Jobs",name:"SSC & Banking",desc:"Reasoning, quant and general awareness prep for SSC CGL/CHSL and bank/railway recruitment exams."},
+  {tag:"State Level",name:"Rajasthan CET",desc:"Complete coverage for the Rajasthan Common Eligibility Test for senior secondary & graduate level posts."},
+];
+function lpSparks(){
+  let html='';
+  const positions=[
+    {l:'8%',t:'20%',s:5,d:0,dur:6},{l:'22%',t:'70%',s:3,d:1.2,dur:7.5},
+    {l:'45%',t:'12%',s:4,d:2.4,dur:6.8},{l:'65%',t:'55%',s:3,d:0.6,dur:8},
+    {l:'80%',t:'30%',s:5,d:1.8,dur:7},{l:'34%',t:'85%',s:3,d:3,dur:6.5},
+    {l:'92%',t:'65%',s:4,d:2,dur:7.2},{l:'15%',t:'45%',s:3,d:0.9,dur:8.4}
+  ];
+  positions.forEach(p=>{
+    html+=`<span class="lp-spark" style="left:${p.l};top:${p.t};width:${p.s}px;height:${p.s}px;animation-duration:${p.dur}s;animation-delay:${p.d}s;"></span>`;
+  });
+  return html;
+}
+function lpRoadSVG(){
+  return `<svg viewBox="0 0 420 480" fill="none">
+    <path class="lp-road-edge" d="M60 460 C 40 340, 160 300, 150 200 C 142 120, 260 100, 250 20"/>
+    <path class="lp-road-path" d="M60 460 C 40 340, 160 300, 150 200 C 142 120, 260 100, 250 20"/>
+    <path class="lp-road-lane" d="M60 460 C 40 340, 160 300, 150 200 C 142 120, 260 100, 250 20"/>
+    <g class="lp-cap" transform="translate(250,4)">
+      <path d="M-46 8 L0 -14 L46 8 L0 30 Z" fill="#ffd400"/>
+      <path d="M-46 8 L0 30 L46 8" stroke="#151735" stroke-width="3" fill="none"/>
+      <circle cx="40" cy="22" r="4" fill="#151735"/>
+      <line x1="40" y1="8" x2="40" y2="22" stroke="#151735" stroke-width="2"/>
+    </g>
+  </svg>`;
+}
+function renderLanding(){
+  return `
+  <div class="lp">
+    <header class="lp-header">
+      <div class="wrap">
+        <div class="lp-logo"><img src="images/logo-full.png" alt="New Way Coaching Classes logo"></div>
+        <nav class="lp-nav">
+          <a href="#home" onclick="lpNavClose()">Home</a>
+          <a href="#courses" onclick="lpNavClose()">Courses</a>
+          <a href="#exams" onclick="lpNavClose()">Competitive Exams</a>
+          <a href="#why" onclick="lpNavClose()">Why Us</a>
+          <a href="#contact" onclick="lpNavClose()">Contact</a>
+          <button class="lp-portal-btn" onclick="goLogin('admin')">Student / Staff Login</button>
+        </nav>
+        <button class="lp-burger" onclick="toggleLpNav()">☰</button>
+      </div>
+    </header>
+
+    <section class="lp-hero" id="home">
+      <div class="lp-blob b1"></div><div class="lp-blob b2"></div>
+      ${lpSparks()}
+      <div class="wrap">
+        <div>
+          <div class="lp-eyebrow"><img src='images/graduate-avatar.png' class='ic-img' alt=''> Sumerpur's Trusted Coaching Institute</div>
+          <h1>Every student's road to success, <em>paved right here.</em></h1>
+          <p class="lead">From Class 8 foundations to board exams and India's toughest competitive exams — New Way Coaching Classes builds the discipline, doubt-clearing and daily practice that gets results.</p>
+          <div class="lp-btn-row">
+            <a class="lp-btn lp-btn-primary" href="#courses">Explore Courses</a>
+            <a class="lp-btn lp-btn-outline" href="#contact">Book a Free Demo Class</a>
+          </div>
+          <div class="lp-stats">
+            <div><b>12+</b><span>Years of Teaching</span></div>
+            <div><b>3,000+</b><span>Students Guided</span></div>
+            <div><b>96%</b><span>Board Result Rate</span></div>
+          </div>
+        </div>
+        <div class="lp-road-wrap">
+          ${lpRoadSVG()}
+          <div class="lp-milestone" style="top:8%;right:2%;"><img src='images/trophy-star.png' class='ic-img' alt=''> 96% Results</div>
+          <div class="lp-milestone" style="bottom:20%;left:0;animation-delay:1.5s;"><img src='images/book.png' class='ic-img' alt=''> Daily Practice</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lp-courses" id="courses">
+      <div class="wrap">
+        <div class="lp-sec-head lp-reveal">
+          <div class="lp-kicker">School Curriculum</div>
+          <h2>Courses for Class 8 to Class 12</h2>
+          <p>Science and Mathematics batches mapped to your school syllabus and board exam pattern, from foundation years through senior secondary.</p>
+        </div>
+        <div class="lp-course-grid">
+          ${COURSES.map((c,i)=>`
+          <div class="lp-course-card lp-reveal d${(i%4)+1}">
+            <div class="grade">${c.grade}<span>Class ${c.grade} · ${c.tag}</span></div>
+            <div class="subs">${c.subs.map(s=>`<span>${s}</span>`).join('')}</div>
+            <a href="#contact">Enquire Now →</a>
+          </div>`).join('')}
+        </div>
+      </div>
+    </section>
+
+    <section class="lp-exams" id="exams">
+      <div class="wrap">
+        <div class="lp-sec-head lp-reveal">
+          <div class="lp-kicker">Beyond School</div>
+          <h2>Competitive Exam Coaching</h2>
+          <p>Structured, test-driven preparation for the exams that open doors — from state board toppers lists to national-level entrances and government jobs.</p>
+        </div>
+        <div class="lp-exam-grid">
+          ${EXAMS.map((e,i)=>`
+          <div class="lp-exam-card lp-reveal d${(i%4)+1}">
+            <span class="tag">${e.tag}</span>
+            <h4>${e.name}</h4>
+            <p>${e.desc}</p>
+          </div>`).join('')}
+        </div>
+      </div>
+    </section>
+
+    <section class="lp-why" id="why">
+      <div class="wrap">
+        <div class="lp-sec-head lp-reveal">
+          <div class="lp-kicker">Why New Way</div>
+          <h2>Built around how students actually learn</h2>
+        </div>
+        <div class="lp-why-grid">
+          <div class="lp-why-card lp-reveal d1"><div class="ic"><img src='images/graduate-avatar.png' class='ic-img' alt=''></div><h4>Expert Faculty</h4><p>Subject specialists with years of board & competitive exam teaching experience.</p></div>
+          <div class="lp-why-card lp-reveal d2"><div class="ic"><img src='images/graduate-avatar.png' class='ic-img' alt=''></div><h4>Small Batches</h4><p>Limited batch sizes so every student gets real attention, not just a seat.</p></div>
+          <div class="lp-why-card lp-reveal d3"><div class="ic"><img src='images/education.png' class='ic-img' alt=''></div><h4>Regular Testing</h4><p>Weekly, monthly and mock tests keep progress visible and exam-ready.</p></div>
+          <div class="lp-why-card lp-reveal d4"><div class="ic"><img src='images/phone.png' class='ic-img' alt=''></div><h4>Parent Updates</h4><p>Attendance, marks and fee status shared with parents through our portal.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lp-cta" id="contact">
+      <div class="wrap">
+        <div class="lp-reveal">
+          <h2>Ready to start the climb?</h2>
+          <p>Tell us a little about your child and the class they're in — our counsellor will call you within 24 hours to schedule a free demo class and discuss the right batch.</p>
+          <div style="margin-top:24px;display:flex;gap:22px;flex-wrap:wrap;font-size:13.5px;color:rgba(255,255,255,.75);">
+            <div>Sumerpur, Rajasthan</div>
+            <div><img src='images/phone.png' class='ic-img' alt=''> +91 98290 00000</div>
+            <div><img src='images/chat.png' class='ic-img' alt=''> hello@newwaycoaching.in</div>
+          </div>
+        </div>
+        <form class="lp-form lp-reveal d2" id="enquiryForm" onsubmit="return enquirySubmit(event)">
+          <div class="field"><label>Student Name</label><input required placeholder="Full name"></div>
+          <div class="field"><label>Parent Phone Number</label><input required placeholder="+91 XXXXX XXXXX"></div>
+          <div class="field"><label>Class Interested In</label>
+            <select><option>Class 8</option><option>Class 9</option><option>Class 10</option><option>Class 11</option><option>Class 12</option><option>Competitive Exam</option></select>
+          </div>
+          <button type="submit">Request Free Demo Class</button>
+        </form>
+      </div>
+    </section>
+
+    <footer class="lp-footer">
+      <div class="wrap">
+        <div>
+          <img src="images/logo-full.png" alt="New Way Coaching Classes">
+          <p style="max-width:280px;line-height:1.6;">New Way Coaching Classes — school and competitive exam coaching in Sumerpur, Rajasthan. Your's success is our's target.</p>
+        </div>
+        <div><h5>Quick Links</h5><ul>
+          <li><a href="#courses">Courses</a></li><li><a href="#exams">Competitive Exams</a></li>
+          <li><a href="#why">Why Us</a></li><li><a href="#contact">Contact</a></li>
+          <li><a href="javascript:void(0)" onclick="goLogin('admin')">Student / Staff Login</a></li>
+        </ul></div>
+        <div><h5>Contact</h5><ul>
+          <li>Sumerpur, Rajasthan, India</li><li><img src='images/phone.png' class='ic-img' alt=''> +91 98290 00000</li><li><img src='images/chat.png' class='ic-img' alt=''> hello@newwaycoaching.in</li>
+        </ul></div>
+      </div>
+      <div class="lp-footer-bottom">© 2026 New Way Coaching Classes · Your's success is our's target</div>
+    </footer>
+  </div>`;
+}
+
+function renderLogin(){
+  const roleLabel={admin:"Admin",teacher:"Teacher",parent:"Parent"};
+  return `
+  <div class="lp-login-wrap">
+    <a class="lp-back-home" href="javascript:void(0)" onclick="goLanding()">← Back to website</a>
+    <div class="lp-login-card">
+      <img src="images/logo-full.png" alt="New Way Coaching Classes">
+      <h2>Portal Login</h2>
+      <p class="sub">Sign in to access your dashboard</p>
+      <div class="lp-role-tabs">
+        ${["admin","teacher","parent"].map(r=>`<button class="${state.loginRole===r?'active':''}" onclick="setLoginRole('${r}')">${roleLabel[r]}</button>`).join('')}
+      </div>
+      ${state.loginError?`<div class="lp-login-error">${state.loginError}</div>`:''}
+      <form onsubmit="return tryLogin(event)">
+        <div class="field"><label>Username</label><input id="loginUser" autocomplete="username" placeholder="Enter username"></div>
+        <div class="field"><label>Password</label><input id="loginPass" type="password" autocomplete="current-password" placeholder="Enter password"></div>
+        <button type="submit" class="lp-login-btn">Login to ${roleLabel[state.loginRole]} Portal</button>
+      </form>
+      <div class="lp-demo-hint">Demo credentials — <b>${CREDENTIALS[state.loginRole].username}</b> / <b>${CREDENTIALS[state.loginRole].password}</b></div>
+    </div>
+  </div>`;
+}
+
+/* ================= RENDER HELPERS ================= */
+function statusBadge(status){
+  const map={Completed:"green",Ongoing:"yellow",Upcoming:"blue",Cancelled:"red",Scheduled:"blue",
+    Paid:"green",Pending:"orange",Approved:"green",Rejected:"red","Follow-up Due":"orange",New:"blue",Converted:"green"};
+  return `<span class="badge ${map[status]||'gray'}">${status}</span>`;
+}
+function pageHeader(title,sub){
+  return `<div class="section-title">${title}</div><div class="section-desc">${sub}</div>`;
+}
+function statCard(icon,label,val,sub,isTrend){
+  return `<div class="stat-card"><div class="top"><div class="ic">${icon}</div></div>
+    <div class="val">${val}</div><div class="lbl">${label}</div>
+    <div class="${isTrend?'trend up':''}" style="${isTrend?'':'font-size:11px;color:var(--gray-500);margin-top:8px;'}">${isTrend?'▲ '+sub:(sub||'')}</div></div>`;
+}
+function todayStr(){return new Date().toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'});}
+function gradeBadge(g){
+  const c=g.startsWith('A')?'green':g.startsWith('B')?'blue':g.startsWith('C')?'yellow':'red';
+  return `<span class="badge ${c}">${g}</span>`;
+}
+function infoRow(label,val){
+  return `<div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--gray-200);font-size:13px;">
+    <span style="color:var(--gray-500);">${label}</span><span style="font-weight:700;color:var(--ink);">${val}</span></div>`;
+}
+function monthCells(){
+  let html='';
+  for(let i=1;i<=30;i++){
+    const r=(i*17)%20/20;
+    const cls=r<0.1?'holiday':(r>0.15&&r<0.22)?'exam':'';
+    html+=`<div class="cal-cell ${cls}">${i}</div>`;
+  }
+  return html;
+}
+
+/* ---------- TEACHER: DASHBOARD ---------- */
+function renderTeacherDash(){
+  const totalStudents=DB.students.length;
+  const avgAtt=Math.round(DB.students.reduce((a,s)=>a+s.attendance,0)/totalStudents);
+  return `
+  ${pageHeader("Welcome back, "+DB.teacher.name.split(' ')[1]+"","Here's what's happening across your classes today, "+todayStr()+".")}
+  <div class="grid grid-4" style="margin-bottom:16px;">
+    ${statCard("<img src='images/schedule.png' class='ic-img' alt=''>","Today's Classes","4","2 completed, 1 ongoing")}
+    ${statCard("<img src='images/graduate-avatar.png' class='ic-img' alt=''>","Total Students",totalStudents,"Across "+DB.teacher.batches.length+" batches")}
+    ${statCard("<img src='images/check.png' class='ic-img' alt=''>","Today's Attendance",avgAtt+"%","up",true)}
+    ${statCard("<img src='images/book.png' class='ic-img' alt=''>","Pending Homework","3","Awaiting review")}
+  </div>
+  <div class="grid grid-2" style="margin-bottom:16px;align-items:start;">
+    <div class="card">
+      <div class="card-head"><h3>Today's Schedule</h3><span class="badge blue">${DB.classesToday.length} classes</span></div>
+      ${DB.classesToday.map(c=>`
+        <div class="list-row">
+          <div class="list-icon"><img src='images/clock.png' class='ic-img' alt=''></div>
+          <div style="flex:1;">
+            <div style="font-weight:700;font-size:13.5px;">${c.subject} — ${c.topic}</div>
+            <div style="font-size:12px;color:var(--gray-500);">${c.time} · ${c.cls} · ${c.batch} · ${c.room}</div>
+          </div>
+          ${statusBadge(c.status)}
+        </div>`).join('')}
+    </div>
+    <div class="card">
+      <div class="card-head"><h3>Important Notices</h3></div>
+      ${DB.notices.map(n=>`
+        <div class="list-row">
+          <div class="list-icon"><img src='images/chat.png' class='ic-img' alt=''></div>
+          <div style="flex:1;">
+            <div style="font-weight:700;font-size:13.5px;">${n.title}</div>
+            <div style="font-size:12px;color:var(--gray-500);">${n.date}</div>
+          </div>
+          <span class="badge blue">${n.tag}</span>
+        </div>`).join('')}
+      <div style="margin-top:6px;"><button class="btn btn-outline btn-sm" onclick="openModal('addNotice')">+ Add Notice</button></div>
+    </div>
+  </div>
+  <div class="grid grid-2" style="margin-bottom:16px;align-items:start;">
+    <div class="card">
+      <div class="card-head"><h3><img src='images/clock (1).png' class='ic-img' alt=''> Attention Required</h3><span class="badge red">${DB.attention.length} students</span></div>
+      ${DB.attention.map(a=>`
+        <div class="list-row">
+          <div class="list-icon" style="background:#fdeceb;color:var(--red);">!</div>
+          <div style="flex:1;">
+            <div style="font-weight:700;font-size:13.5px;">${a.name}</div>
+            <div style="font-size:12px;color:var(--gray-500);">${a.reasons.join(' · ')}</div>
+          </div>
+        </div>`).join('')}
+    </div>
+    <div class="card">
+      <div class="card-head"><h3><img src='images/school.png' class='ic-img' alt=''> Recent Activity</h3></div>
+      ${["You marked attendance for Class 9 — Batch C","You uploaded Trigonometry Practice Sheet","Rohit Verma submitted Unit Test 2 homework","You added a remark for Karan Mehta","Marks entered for Weekly Test 6"].map((t,i)=>`
+        <div class="list-row"><div class="list-icon">•</div><div style="flex:1;font-size:13px;">${t}</div><div style="font-size:11px;color:var(--gray-500);">${i+1}h ago</div></div>`).join('')}
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-head"><h3>Quick Actions</h3></div>
+    <div class="quick-actions">
+      <button class="btn btn-accent" onclick="goPage('attendance')"><img src='images/check.png' class='ic-img' alt=''> Take Attendance</button>
+      <button class="btn btn-outline" onclick="openModal('homework')"><img src='images/book.png' class='ic-img' alt=''> Add Homework</button>
+      <button class="btn btn-outline" onclick="goPage('tests')"><img src='images/education.png' class='ic-img' alt=''> Create Test</button>
+      <button class="btn btn-outline" onclick="goPage('marks')"><img src='images/trophy-star.png' class='ic-img' alt=''> Add Marks</button>
+      <button class="btn btn-outline" onclick="openModal('addNotice')"><img src='images/chat.png' class='ic-img' alt=''> Add Notice</button>
+      <button class="btn btn-outline" onclick="goPage('attention')"><img src='images/graduate-avatar.png' class='ic-img' alt=''> View Students</button>
+      <button class="btn btn-outline" onclick="openModal('announcement')"><img src='images/chat.png' class='ic-img' alt=''> Send Announcement</button>
+    </div>
+  </div>`;
+}
+
+/* ---------- TEACHER: PROFILE ---------- */
+function renderProfile(){
+  const t=DB.teacher;
+  return `
+  ${pageHeader("My Profile","View and edit your teacher profile information.")}
+  <div class="card" style="margin-bottom:16px;">
+    <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center;">
+      <div class="avatar-lg">${t.name.split(' ').map(n=>n[0]).slice(0,2).join('')}</div>
+      <div style="flex:1;min-width:200px;">
+        <div style="font-size:19px;font-weight:800;color:var(--navy-950);">${t.name}</div>
+        <div style="color:var(--gray-500);font-size:13px;margin-top:2px;">${t.qualification}</div>
+        <div style="margin-top:8px;" class="chip-row">
+          <span class="chip">🆔 ${t.id}</span><span class="chip"><img src='images/schedule.png' class='ic-img' alt=''> ${t.experience} experience</span>
+        </div>
+      </div>
+      <button class="btn btn-accent" onclick="openModal('editProfile')">✏ Edit Profile</button>
+    </div>
+  </div>
+  <div class="grid grid-2">
+    <div class="card">
+      <div class="card-head"><h3>Contact Details</h3></div>
+      ${infoRow("Phone Number",t.phone)}${infoRow("Email",t.email)}${infoRow("Joining Date",t.joining)}
+    </div>
+    <div class="card">
+      <div class="card-head"><h3>Teaching Assignment</h3></div>
+      ${infoRow("Subjects",t.subjects.join(', '))}${infoRow("Classes",t.classes.join(', '))}${infoRow("Assigned Batches",t.batches.join(', '))}
+    </div>
+  </div>`;
+}
+
+/* ---------- CLASSES & LECTURES ---------- */
+function renderClasses(){
+  return `
+  ${pageHeader("Classes & Lectures","Manage your daily lectures across classes and batches.")}
+  <div class="card">
+    <div class="card-head"><h3>Lecture Schedule</h3><button class="btn btn-accent btn-sm" onclick="openModal('addLecture')">+ Schedule Lecture</button></div>
+    <div class="table-wrap"><table>
+      <tr><th>Date</th><th>Time</th><th>Class</th><th>Batch</th><th>Subject</th><th>Room</th><th>Topic</th><th>Status</th><th>Action</th></tr>
+      ${DB.lectures.map((l,i)=>`
+        <tr><td>${l.date}</td><td>${l.time}</td><td>${l.cls}</td><td>${l.batch}</td><td>${l.subject}</td><td>${l.room}</td><td>${l.topic}</td>
+        <td>${statusBadge(l.status)}</td>
+        <td>${l.status==='Upcoming'?`<button class="btn btn-outline btn-sm" onclick="startClass(${i})">Start Class</button>`:
+             l.status==='Ongoing'?`<button class="btn btn-accent btn-sm" onclick="completeClass(${i})">Mark Completed</button>`:
+             `<span style="color:var(--gray-300);font-size:12px;">—</span>`}</td></tr>`).join('')}
+    </table></div>
+  </div>`;
+}
+function startClass(i){DB.lectures[i].status="Ongoing";render();}
+function completeClass(i){DB.lectures[i].status="Completed";render();}
+
+/* ---------- TEACHING PLANNER ---------- */
+function renderPlanner(){
+  const days=["Mon","Tue","Wed","Thu","Fri","Sat"];
+  return `
+  ${pageHeader("Daily Teaching Planner","Plan today's topic, objectives, and homework ahead of class.")}
+  <div class="grid grid-2" style="align-items:start;">
+    <div class="card">
+      <div class="card-head"><h3>This Week's Plan</h3></div>
+      ${days.map((d,i)=>`
+        <div class="list-row">
+          <div class="list-icon">${d}</div>
+          <div style="flex:1;">
+            <div style="font-weight:700;font-size:13px;">${["Quadratic Equations — Nature of Roots","Quadratic Eq. — Word Problems","Revision + Practice Test","Chemical Reactions Ch. Review","Trigonometry Introduction","Doubt Clearing Session"][i]}</div>
+            <div style="font-size:12px;color:var(--gray-500);">Chapter: ${["Quadratic Equations","Quadratic Equations","Quadratic Equations","Chemical Reactions","Trigonometry","Mixed"][i]}</div>
+          </div>
+        </div>`).join('')}
+    </div>
+    <div class="card">
+      <div class="card-head"><h3>Add Plan for Today</h3></div>
+      <div class="field"><label>Today's Topic</label><input class="input" placeholder="e.g. Nature of Roots of Quadratic Equation"></div>
+      <div class="form-grid">
+        <div class="field"><label>Chapter</label><input class="input" placeholder="Quadratic Equations"></div>
+        <div class="field"><label>Subject</label><select class="input"><option>Mathematics</option><option>Science</option></select></div>
+      </div>
+      <div class="field"><label>Learning Objectives</label><textarea class="input" rows="2" placeholder="Students will be able to determine the nature of roots using the discriminant."></textarea></div>
+      <div class="form-grid">
+        <div class="field"><label>Homework</label><input class="input" placeholder="Exercise 4.3, Q1–10"></div>
+        <div class="field"><label>Practice Questions</label><input class="input" placeholder="10 MCQs from question bank"></div>
+      </div>
+      <div class="field"><label>Notes</label><textarea class="input" rows="2" placeholder="Recap previous class before starting."></textarea></div>
+      <button class="btn btn-accent" onclick="toast('Teaching plan saved')">Save Plan</button>
+    </div>
+  </div>`;
+}
+
+/* ---------- SYLLABUS ---------- */
+function renderSyllabus(){
+  return `
+  ${pageHeader("Syllabus Management","Track chapter-wise completion across your subjects.")}
+  <div class="grid grid-2" style="align-items:start;">
+  ${DB.syllabus.map((s,si)=>{
+    const done=s.chapters.filter(c=>c.status==='Completed').length;
+    const pct=Math.round(done/s.chapters.length*100);
+    return `<div class="card">
+      <div class="card-head"><h3>${s.cls} ${s.subject}</h3><span class="badge blue">${pct}% Completed</span></div>
+      <div class="progress-bar" style="margin-bottom:14px;"><div class="progress-fill" style="width:${pct}%;"></div></div>
+      ${s.chapters.map((c,ci)=>`
+        <div class="list-row">
+          <div class="list-icon">${c.status==='Completed'?"<img src='images/check.png' class='ic-img' alt=''>":c.status==='In Progress'?'⏳':'⬜'}</div>
+          <div style="flex:1;font-size:13px;font-weight:600;">${c.name}</div>
+          ${statusBadge(c.status==='Not Started'?'gray':c.status)}
+          ${c.status!=='Completed'?`<button class="btn btn-ghost btn-sm" onclick="markCompleted(${si},${ci})">Mark Done</button>`:''}
+        </div>`).join('')}
+      <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--gray-500);margin-top:12px;flex-wrap:wrap;gap:6px;">
+        <span>Remaining: ${s.chapters.length-done} chapters</span><span>Expected completion: ${s.expected}</span>
+      </div>
+    </div>`;
+  }).join('')}
+  </div>`;
+}
+function markCompleted(si,ci){DB.syllabus[si].chapters[ci].status='Completed';render();}
+
+/* ---------- STUDY MATERIALS ---------- */
+function renderMaterials(){
+  const typeIcon={PDF:"<img src='images/book.png' class='ic-img' alt=''>",Worksheet:"<img src='images/education.png' class='ic-img' alt=''>","Sample Paper":"<img src='images/book.png' class='ic-img' alt=''>","Important Qs":"<img src='images/clock (1).png' class='ic-img' alt=''>","Video Link":"<img src='images/book.png' class='ic-img' alt=''>"};
+  return `
+  ${pageHeader("Study Materials","Upload and organize notes, worksheets, and revision material.")}
+  <div class="card" style="margin-bottom:16px;">
+    <div class="card-head"><h3>Upload New Material</h3></div>
+    <div class="form-grid">
+      <div class="field"><label>Title</label><input class="input" placeholder="e.g. Trigonometry Formula Sheet"></div>
+      <div class="field"><label>Type</label><select class="input"><option>Notes</option><option>PDF</option><option>Worksheet</option><option>Practice Questions</option><option>Sample Paper</option><option>Important Questions</option><option>Revision Material</option><option>Video Link</option></select></div>
+      <div class="field"><label>Class</label><select class="input"><option>Class 9</option><option>Class 10</option></select></div>
+      <div class="field"><label>Subject</label><select class="input"><option>Mathematics</option><option>Science</option></select></div>
+      <div class="field"><label>Chapter</label><input class="input" placeholder="Chapter name"></div>
+      <div class="field"><label>Batch</label><select class="input"><option>All</option>${DB.batches.map(b=>`<option>${b}</option>`).join('')}</select></div>
+    </div>
+    <button class="btn btn-accent" onclick="toast('Material uploaded (placeholder)')"><img src='images/chat.png' class='ic-img' alt=''> Upload Material</button>
+  </div>
+  <div class="grid grid-3">
+    ${DB.materials.map(m=>`
+      <div class="card">
+        <div style="font-size:26px;">${typeIcon[m.type]||"<img src='images/book.png' class='ic-img' alt=''>"}</div>
+        <div style="font-weight:700;font-size:13.5px;margin-top:8px;">${m.title}</div>
+        <div style="font-size:12px;color:var(--gray-500);margin:4px 0 10px;">${m.cls} · ${m.subject} · ${m.chapter}</div>
+        <div class="chip-row" style="margin-bottom:10px;"><span class="chip">${m.batch}</span><span class="chip">${m.size}</span></div>
+        <button class="btn btn-outline btn-sm" style="width:100%;justify-content:center;" onclick="toast('Downloading (placeholder)')">⬇ Download</button>
+      </div>`).join('')}
+  </div>`;
+}
+
+/* ---------- TESTS ---------- */
+function renderTests(){
+  return `
+  ${pageHeader("Test & Exam Management","Create and manage tests across classes and batches.")}
+  <div class="card" style="margin-bottom:16px;">
+    <div class="card-head"><h3>Create New Test</h3></div>
+    <div class="form-grid">
+      <div class="field"><label>Test Name</label><input class="input" placeholder="e.g. Unit Test 3"></div>
+      <div class="field"><label>Test Type</label><select class="input"><option>Class Test</option><option>Weekly Test</option><option>Monthly Test</option><option>Unit Test</option><option>Mock Test</option><option>Full Syllabus Test</option></select></div>
+      <div class="field"><label>Subject</label><select class="input"><option>Mathematics</option><option>Science</option></select></div>
+      <div class="field"><label>Class</label><select class="input"><option>Class 9</option><option>Class 10</option></select></div>
+      <div class="field"><label>Batch</label><select class="input"><option>All</option>${DB.batches.map(b=>`<option>${b}</option>`).join('')}</select></div>
+      <div class="field"><label>Date</label><input type="date" class="input"></div>
+      <div class="field"><label>Duration (minutes)</label><input class="input" placeholder="60"></div>
+      <div class="field"><label>Total Marks</label><input class="input" placeholder="50"></div>
+      <div class="field"><label>Passing Marks</label><input class="input" placeholder="18"></div>
+      <div class="field"><label>Syllabus Covered</label><input class="input" placeholder="Chapters 1–4"></div>
+    </div>
+    <div class="field"><label>Instructions</label><textarea class="input" rows="2" placeholder="All questions are compulsory. Use of calculator not allowed."></textarea></div>
+    <button class="btn btn-accent" onclick="toast('Test created')">Create Test</button>
+  </div>
+  <div class="card">
+    <div class="card-head"><h3>Scheduled & Completed Tests</h3></div>
+    <div class="table-wrap"><table>
+      <tr><th>Test</th><th>Type</th><th>Subject</th><th>Class/Batch</th><th>Date</th><th>Duration</th><th>Marks</th><th>Status</th></tr>
+      ${DB.tests.map(t=>`<tr><td style="font-weight:700;">${t.name}</td><td>${t.type}</td><td>${t.subject}</td><td>${t.cls} / ${t.batch}</td><td>${t.date}</td><td>${t.duration}</td><td>${t.total} (pass ${t.passing})</td><td>${statusBadge(t.status)}</td></tr>`).join('')}
+    </table></div>
+  </div>`;
+}
+
+/* ---------- QUESTION PAPERS ---------- */
+function renderQBank(){
+  const diffColor={Easy:"green",Medium:"orange",Hard:"red"};
+  return `
+  ${pageHeader("Question Paper Management","Build question papers from a reusable question bank.")}
+  <div class="grid grid-2" style="align-items:start;">
+    <div class="card">
+      <div class="card-head"><h3>Add Question to Bank</h3></div>
+      <div class="field"><label>Question</label><textarea class="input" rows="2" placeholder="Type the question here..."></textarea></div>
+      <div class="form-grid">
+        <div class="field"><label>Subject</label><select class="input"><option>Mathematics</option><option>Science</option></select></div>
+        <div class="field"><label>Chapter</label><input class="input" placeholder="Chapter name"></div>
+        <div class="field"><label>Type</label><select class="input"><option>MCQ</option><option>Descriptive</option></select></div>
+        <div class="field"><label>Difficulty</label><select class="input"><option>Easy</option><option>Medium</option><option>Hard</option></select></div>
+        <div class="field"><label>Marks</label><input class="input" placeholder="e.g. 4"></div>
+      </div>
+      <button class="btn btn-accent" onclick="toast('Question added to bank')">+ Add to Question Bank</button>
+    </div>
+    <div class="card">
+      <div class="card-head"><h3>Build Question Paper</h3></div>
+      <div class="field"><label>Paper Title</label><input class="input" placeholder="Unit Test 3 — Mathematics"></div>
+      <div class="chip-row" style="margin-bottom:12px;">
+        <span class="chip">✓ 12 MCQs selected</span><span class="chip">✓ 5 Descriptive selected</span><span class="chip">Total: 50 marks</span>
+      </div>
+      <button class="btn btn-outline btn-sm" style="margin-bottom:6px;" onclick="toast('Opening question bank selector (placeholder)')">Select from Question Bank</button><br>
+      <button class="btn btn-accent" onclick="toast('Question paper generated')">Generate Paper</button>
+    </div>
+  </div>
+  <div class="card" style="margin-top:16px;">
+    <div class="card-head"><h3>Question Bank</h3></div>
+    <div class="table-wrap"><table>
+      <tr><th>Question</th><th>Subject</th><th>Chapter</th><th>Type</th><th>Marks</th><th>Difficulty</th></tr>
+      ${DB.questionBank.map(q=>`<tr><td>${q.q}</td><td>${q.subject}</td><td>${q.chapter}</td><td>${q.type}</td><td>${q.marks}</td><td><span class="badge ${diffColor[q.diff]}">${q.diff}</span></td></tr>`).join('')}
+    </table></div>
+  </div>`;
+}
+
+/* ---------- MARKS ENTRY ---------- */
+function renderMarks(){
+  const total=DB.marks.reduce((a,m)=>a+m.marks,0);
+  const avg=Math.round(total/DB.marks.length);
+  const high=Math.max(...DB.marks.map(m=>m.marks));
+  const low=Math.min(...DB.marks.map(m=>m.marks));
+  return `
+  ${pageHeader("Test Marks & Performance","Enter marks and view automatically calculated statistics.")}
+  <div class="grid grid-4" style="margin-bottom:16px;">
+    ${statCard("<img src='images/bar-graph.png' class='ic-img' alt=''>","Class Average",avg)}
+    ${statCard("<img src='images/trophy-star.png' class='ic-img' alt=''>","Highest Marks",high)}
+    ${statCard("<img src='images/bar-graph.png' class='ic-img' alt=''>","Lowest Marks",low)}
+    ${statCard("<img src='images/graduate-avatar.png' class='ic-img' alt=''>","Students Graded",DB.marks.length)}
+  </div>
+  <div class="card" style="margin-bottom:16px;">
+    <div class="card-head"><h3>Enter Marks — Unit Test 2</h3></div>
+    <div class="form-grid">
+      <div class="field"><label>Student</label><select class="input">${DB.students.map(s=>`<option>${s.name}</option>`).join('')}</select></div>
+      <div class="field"><label>Subject</label><select class="input"><option>Mathematics</option><option>Science</option></select></div>
+      <div class="field"><label>Marks Obtained</label><input class="input" placeholder="e.g. 42"></div>
+      <div class="field"><label>Total Marks</label><input class="input" value="50"></div>
+    </div>
+    <button class="btn btn-accent" onclick="toast('Marks saved. Percentage & grade auto-calculated.')">Save Marks</button>
+  </div>
+  <div class="card">
+    <div class="card-head"><h3>Marks Sheet — Unit Test 2</h3></div>
+    <div class="table-wrap"><table>
+      <tr><th>Rank</th><th>Student</th><th>Class</th><th>Marks</th><th>Total</th><th>Percentage</th><th>Grade</th></tr>
+      ${DB.marks.map(m=>`<tr><td>#${m.rank}</td><td style="font-weight:700;">${m.name}</td><td>${m.cls}</td><td>${m.marks}</td><td>${m.total}</td><td>${m.marks}%</td><td>${gradeBadge(m.grade)}</td></tr>`).join('')}
+    </table></div>
+  </div>`;
+}
+
+/* ---------- PERFORMANCE ANALYTICS ---------- */
+function renderAnalytics(){
+  setTimeout(drawAnalyticsCharts,0);
+  return `
+  ${pageHeader("Student Performance Analytics","Track marks, attendance, and subject-wise trends over time.")}
+  <div class="field" style="max-width:280px;margin-bottom:16px;"><label>Select Student</label>
+    <select class="input" onchange="toast('Showing analytics for '+this.value)">${DB.students.map(s=>`<option>${s.name}</option>`).join('')}</select>
+  </div>
+  <div class="grid grid-2" style="margin-bottom:16px;">
+    <div class="card"><div class="card-head"><h3>Marks Over Time</h3></div><canvas id="chartMarks" height="180"></canvas></div>
+    <div class="card"><div class="card-head"><h3>Subject Comparison</h3></div><canvas id="chartSubject" height="180"></canvas></div>
+  </div>
+  <div class="grid grid-2" style="margin-bottom:16px;">
+    <div class="card"><div class="card-head"><h3>Attendance vs Performance</h3></div><canvas id="chartAttPerf" height="180"></canvas></div>
+    <div class="card"><div class="card-head"><h3>Test Performance Trend (Class Avg)</h3></div><canvas id="chartTrend" height="180"></canvas></div>
+  </div>
+  <div class="grid grid-3">
+    <div class="card"><div class="card-head"><h3>Homework Completion</h3></div><div class="progress-bar"><div class="progress-fill" style="width:83%;"></div></div><div style="margin-top:8px;font-size:12px;color:var(--gray-500);">83% submitted on time</div></div>
+    <div class="card"><div class="card-head"><h3>Strengths</h3></div><div class="chip-row"><span class="chip">Algebra</span><span class="chip">Number Systems</span><span class="chip">Chemical Bonding</span></div></div>
+    <div class="card"><div class="card-head"><h3>Weak Areas</h3></div><div class="chip-row"><span class="chip" style="color:var(--red);">Trigonometry</span><span class="chip" style="color:var(--red);">Motion</span></div></div>
+  </div>`;
+}
+function chartColors(){return {navy:'#1b1d6e',navy2:'#3438a8',yellow:'#ffd400',gray:'#c9c9dc'};}
+function drawAnalyticsCharts(){
+  const c=chartColors();
+  const mk=(id,cfg)=>{const el=document.getElementById(id);if(!el)return;if(el._chart){el._chart.destroy();}el._chart=new Chart(el,cfg);};
+  mk('chartMarks',{type:'line',data:{labels:['Test1','Test2','Test3','Test4','Test5'],datasets:[{label:'Marks %',data:[62,68,74,71,88],borderColor:c.navy,backgroundColor:'rgba(27,29,110,.08)',tension:.35,fill:true,pointBackgroundColor:c.yellow}]},options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,max:100}}}});
+  mk('chartSubject',{type:'bar',data:{labels:['Mathematics','Science','English','Hindi'],datasets:[{label:'Avg %',data:[81,74,88,79],backgroundColor:[c.navy,c.navy2,c.yellow,'#8a8fd6']}]},options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,max:100}}}});
+  mk('chartAttPerf',{type:'scatter',data:{datasets:[{label:'Students',data:DB.students.map(s=>({x:s.attendance,y:s.lastTest})),backgroundColor:c.navy}]},options:{scales:{x:{title:{display:true,text:'Attendance %'}},y:{title:{display:true,text:'Test Marks'}}}}});
+  mk('chartTrend',{type:'line',data:{labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug'],datasets:[{label:'Class Average',data:[64,66,70,69,72,75,77,79],borderColor:c.yellow,backgroundColor:'rgba(255,212,0,.15)',fill:true,tension:.3}]},options:{plugins:{legend:{display:false}}}});
+}
+
+/* ---------- RANKING ---------- */
+function renderRank(){
+  return `
+  ${pageHeader("Student Ranking","Rank tables for tests — filter by class, batch, subject.")}
+  <div class="form-grid" style="max-width:700px;margin-bottom:16px;">
+    <div class="field"><label>Class</label><select class="input"><option>All</option><option>Class 9</option><option>Class 10</option></select></div>
+    <div class="field"><label>Batch</label><select class="input"><option>All</option>${DB.batches.map(b=>`<option>${b}</option>`).join('')}</select></div>
+    <div class="field"><label>Subject</label><select class="input"><option>All Subjects</option><option>Mathematics</option><option>Science</option></select></div>
+    <div class="field"><label>Test</label><select class="input">${DB.tests.map(t=>`<option>${t.name}</option>`).join('')}</select></div>
+  </div>
+  <div class="card">
+    <div class="table-wrap"><table>
+      <tr><th>Rank</th><th>Student</th><th>Marks</th><th>Percentage</th><th>Grade</th></tr>
+      ${DB.marks.map(m=>`<tr><td>${m.rank<=3?"<img src='images/trophy-star.png' class='ic-img' alt=''>":'#'+m.rank}</td><td style="font-weight:700;">${m.name}</td><td>${m.marks}/${m.total}</td><td>${m.marks}%</td><td>${gradeBadge(m.grade)}</td></tr>`).join('')}
+    </table></div>
+  </div>`;
+}
+
+/* ---------- ATTENTION ---------- */
+function renderAttention(){
+  return `
+  ${pageHeader("<img src='images/clock (1).png' class='ic-img' alt=''> Attention Required","Students automatically flagged for low attendance, weak marks, missing homework, or pending fees.")}
+  <div class="alert-box red"><span class="ic"><img src='images/clock (1).png' class='ic-img' alt=''></span><div><b>${DB.attention.length} students need attention</b><div style="font-size:12.5px;color:var(--gray-500);margin-top:2px;">Reach out or add a remark to help them get back on track.</div></div></div>
+  <div class="grid grid-3">
+  ${DB.attention.map(a=>`
+    <div class="card">
+      <div style="font-weight:800;font-size:14.5px;color:var(--navy-950);">${a.name}</div>
+      <div style="margin:10px 0;">${a.reasons.map(r=>`<div style="font-size:12.5px;color:var(--red);margin-bottom:4px;">🔸 ${r}</div>`).join('')}</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn btn-outline btn-sm" onclick="openModal('remark','${a.name}')">Add Remark</button>
+        <button class="btn btn-outline btn-sm" onclick="openModal('message','${a.name}')">Message Parent</button>
+      </div>
+    </div>`).join('')}
+  </div>`;
+}
+
+/* ---------- REMARKS ---------- */
+function renderRemarks(){
+  return `
+  ${pageHeader("Teacher Remarks","Private notes visible only to authorized teachers and admin staff.")}
+  <div class="card" style="margin-bottom:16px;">
+    <div class="card-head"><h3>Add a Remark</h3></div>
+    <div class="form-grid">
+      <div class="field"><label>Student</label><select class="input">${DB.students.map(s=>`<option>${s.name}</option>`).join('')}</select></div>
+      <div class="field"><label>Quick Templates</label><select class="input" onchange="document.getElementById('remarkText').value=this.value">
+        <option value="">Choose a template…</option><option>Needs more practice</option><option>Excellent performance</option><option>Improve attendance</option><option>Homework frequently missing</option><option>Good improvement</option></select></div>
+    </div>
+    <div class="field"><label>Remark</label><textarea id="remarkText" class="input" rows="2" placeholder="Write a private remark..."></textarea></div>
+    <button class="btn btn-accent" onclick="toast('Remark saved (private)')">Save Remark</button>
+  </div>
+  <div class="card">
+    <div class="card-head"><h3>Remark History</h3><span class="badge gray">🔒 Private</span></div>
+    ${DB.remarks.map(r=>`
+      <div class="list-row"><div class="list-icon"><img src='images/contract.png' class='ic-img' alt=''></div>
+        <div style="flex:1;"><div style="font-weight:700;font-size:13px;">${r.student}</div><div style="font-size:12.5px;color:var(--gray-500);">${r.remark}</div></div>
+        <div style="font-size:11px;color:var(--gray-500);">${r.date}</div>
+      </div>`).join('')}
+  </div>`;
+}
+
+/* ---------- ATTENDANCE ALERTS ---------- */
+function renderAttendanceAlerts(){
+  const threshold=75;
+  const low=DB.students.filter(s=>s.attendance<threshold);
+  return `
+  ${pageHeader("Attendance Alerts","Configurable threshold-based alerts for students falling behind.")}
+  <div class="card" style="margin-bottom:16px;">
+    <div class="card-head"><h3>Alert Threshold</h3></div>
+    <div style="display:flex;align-items:center;gap:14px;max-width:400px;">
+      <input type="range" min="50" max="90" value="${threshold}" style="flex:1;">
+      <span class="badge blue">${threshold}%</span>
+    </div>
+    <div style="font-size:12px;color:var(--gray-500);margin-top:8px;">Students below this attendance percentage are flagged automatically.</div>
+  </div>
+  ${low.length? `<div class="alert-box"><span class="ic"><img src='images/bar-graph.png' class='ic-img' alt=''></span><div><b>Low Attendance Alert</b><div style="font-size:12.5px;color:var(--gray-500);">${low.length} student(s) currently below ${threshold}% attendance.</div></div></div>`:''}
+  <div class="grid grid-3" style="margin-bottom:16px;">
+    ${statCard("<img src='images/bar-graph.png' class='ic-img' alt=''>","Batch Average","82%")}
+    ${statCard("<img src='images/book.png' class='ic-img' alt=''>","Subject Lowest","Science — 76%")}
+    ${statCard("<img src='images/clock (1).png' class='ic-img' alt=''>","Flagged Students",low.length)}
+  </div>
+  <div class="card">
+    <div class="card-head"><h3>Monthly Attendance — All Students</h3></div>
+    <div class="table-wrap"><table>
+      <tr><th>Student</th><th>Class</th><th>Batch</th><th>Attendance</th><th>Status</th></tr>
+      ${DB.students.map(s=>`<tr><td style="font-weight:700;">${s.name}</td><td>${s.cls}</td><td>${s.batch}</td>
+        <td><div class="progress-bar" style="width:100px;"><div class="progress-fill" style="width:${s.attendance}%;"></div></div></td>
+        <td>${s.attendance<threshold?'<span class="badge red">Low</span>':'<span class="badge green">Good</span>'}</td></tr>`).join('')}
+    </table></div>
+  </div>`;
+}
+
+/* ---------- LEAVE (Teacher review) ---------- */
+function renderLeaveTeacher(){
+  return `
+  ${pageHeader("Student Leave Requests","Review and approve leave applications submitted by students/parents.")}
+  <div class="card">
+    <div class="table-wrap"><table>
+      <tr><th>Student</th><th>Date</th><th>Reason</th><th>Status</th><th>Action</th></tr>
+      ${DB.leaves.map((l,i)=>`<tr><td style="font-weight:700;">${l.student}</td><td>${l.date}</td><td>${l.reason}</td><td>${statusBadge(l.status)}</td>
+        <td>${l.status==='Pending'?`<button class="btn btn-accent btn-sm" onclick="setLeave(${i},'Approved')">Approve</button> <button class="btn btn-danger btn-sm" onclick="setLeave(${i},'Rejected')">Reject</button>`:'—'}</td></tr>`).join('')}
+    </table></div>
+  </div>`;
+}
+function setLeave(i,status){DB.leaves[i].status=status;render();}
+
+/* ---------- COMMUNICATION (Teacher) ---------- */
+function renderComm(){
+  return `
+  ${pageHeader("Parent Communication","Send announcements, reminders and updates to parents.")}
+  <div class="card" style="margin-bottom:16px;">
+    <div class="card-head"><h3>Send New Message</h3></div>
+    <div class="form-grid">
+      <div class="field"><label>Type</label><select class="input"><option>General Announcement</option><option>Homework Reminder</option><option>Attendance Warning</option><option>Test Notification</option><option>Fee Reminder</option><option>Performance Update</option></select></div>
+      <div class="field"><label>Recipients</label><select class="input"><option>All Parents — Class 10 Batch A</option><option>All Parents — Class 9 Batch C</option><option>Individual Student</option></select></div>
+    </div>
+    <div class="field"><label>Message</label><textarea class="input" rows="3" placeholder="Type your announcement..."></textarea></div>
+    <button class="btn btn-accent" onclick="toast('Announcement sent')"><img src='images/chat.png' class='ic-img' alt=''> Send</button>
+  </div>
+  <div class="card">
+    <div class="card-head"><h3>Sent History</h3></div>
+    ${[["Fee Reminder","₹4,500 pending for August, due by 25 Aug.","Sent to 12 parents · Yesterday"],
+       ["Test Notification","Unit Test 2 scheduled on 28 Aug. Syllabus: Chapters 1–4.","Sent to 24 parents · 2 days ago"],
+       ["Homework Reminder","Please ensure Exercise 4.2 is completed by tomorrow.","Sent to 24 parents · 3 days ago"]].map(m=>`
+      <div class="list-row"><div class="list-icon"><img src='images/chat.png' class='ic-img' alt=''></div><div style="flex:1;"><div style="font-weight:700;font-size:13px;">${m[0]}</div><div style="font-size:12.5px;color:var(--gray-500);">${m[1]}</div></div><div style="font-size:11px;color:var(--gray-500);">${m[2]}</div></div>`).join('')}
+  </div>`;
+}
+
+/* ================= PARENT PORTAL ================= */
+function renderParentDash(){
+  const c=DB.parentChild;
+  return `
+  ${pageHeader("Welcome, "+c.name.split(' ')[0]+"'s Parent","Overview of "+c.name+"'s academics, attendance, and fees.")}
+  <div class="grid grid-4" style="margin-bottom:16px;">
+    ${statCard("<img src='images/check.png' class='ic-img' alt=''>","Attendance",c.attendance+"%")}
+    ${statCard("<img src='images/fees.png' class='ic-img' alt=''>","Pending Fees",c.pendingFees)}
+    ${statCard("<img src='images/education.png' class='ic-img' alt=''>","Next Test",c.nextTest)}
+    ${statCard("<img src='images/school.png' class='ic-img' alt=''>","Class",c.cls)}
+  </div>
+  <div class="grid grid-2">
+    <div class="card">
+      <div class="card-head"><h3>Recent Test Results</h3></div>
+      <div class="table-wrap"><table><tr><th>Test</th><th>Marks</th><th>Grade</th></tr>
+      <tr><td>Weekly Test 6</td><td>88/100</td><td>${gradeBadge('A')}</td></tr>
+      <tr><td>Unit Test 1</td><td>82/100</td><td>${gradeBadge('A')}</td></tr>
+      <tr><td>Monthly Test — July</td><td>76/100</td><td>${gradeBadge('B+')}</td></tr></table></div>
+    </div>
+    <div class="card">
+      <div class="card-head"><h3>Recent Notices</h3></div>
+      ${DB.notices.map(n=>`<div class="list-row"><div class="list-icon"><img src='images/chat.png' class='ic-img' alt=''></div><div style="flex:1;font-size:13px;font-weight:600;">${n.title}</div><span class="badge blue">${n.tag}</span></div>`).join('')}
+    </div>
+  </div>`;
+}
+function renderParentAttendance(){
+  const c=DB.parentChild;
+  return `${pageHeader("Attendance","Monthly attendance record for "+c.name+".")}
+  <div class="card"><div class="card-head"><h3>August 2026</h3><span class="badge green">${c.attendance}% Present</span></div>
+  <div class="calendar-grid">${monthCells()}</div>
+  <div style="display:flex;gap:16px;margin-top:14px;font-size:12px;flex-wrap:wrap;"><span>🟩 Present</span><span>🟥 Absent</span><span>🟨 Holiday</span></div></div>`;
+}
+function renderParentHomework(){
+  return `${pageHeader("Homework","Homework assigned to "+DB.parentChild.name+".")}
+  <div class="card"><div class="table-wrap"><table><tr><th>Subject</th><th>Homework</th><th>Due Date</th><th>Status</th></tr>
+  <tr><td>Mathematics</td><td>Exercise 4.3, Q1–10</td><td>23 Aug</td><td>${statusBadge('Pending')}</td></tr>
+  <tr><td>Science</td><td>Chemical Reactions worksheet</td><td>22 Aug</td><td>${statusBadge('Completed')}</td></tr>
+  <tr><td>Mathematics</td><td>Revision — Ch. 3</td><td>20 Aug</td><td>${statusBadge('Completed')}</td></tr>
+  </table></div></div>`;
+}
+function renderParentResults(){
+  return `${pageHeader("Test Results","All test results for "+DB.parentChild.name+".")}
+  <div class="card"><div class="table-wrap"><table><tr><th>Test</th><th>Subject</th><th>Marks</th><th>Percentage</th><th>Grade</th><th>Rank</th></tr>
+  <tr><td>Unit Test 2</td><td>Mathematics</td><td>88/100</td><td>88%</td><td>${gradeBadge('A')}</td><td>#2</td></tr>
+  <tr><td>Monthly Test — Aug</td><td>Science</td><td>81/100</td><td>81%</td><td>${gradeBadge('A')}</td><td>#3</td></tr>
+  <tr><td>Weekly Test 6</td><td>Mathematics</td><td>76/100</td><td>76%</td><td>${gradeBadge('B+')}</td><td>#4</td></tr>
+  </table></div></div>`;
+}
+function renderParentReport(){
+  setTimeout(drawAnalyticsCharts,0);
+  return `${pageHeader("Performance Report","Detailed academic progress for "+DB.parentChild.name+".")}
+  <div class="grid grid-2">
+    <div class="card"><div class="card-head"><h3>Marks Over Time</h3></div><canvas id="chartMarks" height="180"></canvas></div>
+    <div class="card"><div class="card-head"><h3>Subject Comparison</h3></div><canvas id="chartSubject" height="180"></canvas></div>
+  </div>
+  <div class="grid grid-2" style="margin-top:16px;">
+    <div class="card"><div class="card-head"><h3>Strengths</h3></div><div class="chip-row"><span class="chip">Algebra</span><span class="chip">Number Systems</span></div></div>
+    <div class="card"><div class="card-head"><h3>Areas to Improve</h3></div><div class="chip-row"><span class="chip" style="color:var(--red);">Trigonometry</span></div></div>
+  </div>`;
+}
+function renderParentFees(){
+  return `${pageHeader("Fees","Fee payment history and dues for "+DB.parentChild.name+".")}
+  <div class="grid grid-3" style="margin-bottom:16px;">
+    ${statCard("<img src='images/fees.png' class='ic-img' alt=''>","Total Paid (2026)","₹36,000")}${statCard("⏳","Pending","₹0")}${statCard("<img src='images/schedule.png' class='ic-img' alt=''>","Next Due","01 Sep — ₹4,500")}
+  </div>
+  <div class="card"><div class="table-wrap"><table><tr><th>Month</th><th>Amount</th><th>Date Paid</th><th>Status</th></tr>
+  <tr><td>August 2026</td><td>₹4,500</td><td>03 Aug</td><td>${statusBadge('Paid')}</td></tr>
+  <tr><td>July 2026</td><td>₹4,500</td><td>02 Jul</td><td>${statusBadge('Paid')}</td></tr>
+  <tr><td>June 2026</td><td>₹4,500</td><td>05 Jun</td><td>${statusBadge('Paid')}</td></tr>
+  </table></div></div>`;
+}
+function renderParentTimetable(){
+  return `${pageHeader("Timetable","Weekly class schedule for "+DB.parentChild.name+".")}
+  <div class="card">${DB.parentChild.timetable.map(t=>`<div class="list-row"><div class="list-icon">${t.day}</div><div style="flex:1;font-weight:700;font-size:13px;">${t.subject}</div><div style="font-size:12.5px;color:var(--gray-500);">${t.time}</div></div>`).join('')}</div>`;
+}
+function renderParentNotices(){
+  return `${pageHeader("Notices","Announcements from the coaching institute.")}
+  <div class="card">${DB.notices.map(n=>`<div class="list-row"><div class="list-icon"><img src='images/chat.png' class='ic-img' alt=''></div><div style="flex:1;font-size:13px;font-weight:600;">${n.title}</div><span class="badge blue">${n.tag}</span></div>`).join('')}</div>`;
+}
+function renderParentLeave(){
+  return `${pageHeader("Apply for Leave","Submit a leave request on behalf of your child.")}
+  <div class="grid grid-2">
+    <div class="card">
+      <div class="card-head"><h3>New Leave Application</h3></div>
+      <div class="field"><label>Leave Date</label><input type="date" class="input"></div>
+      <div class="field"><label>Reason</label><select class="input"><option>Medical</option><option>Family Function</option><option>Travel</option><option>Other</option></select></div>
+      <div class="field"><label>Message</label><textarea class="input" rows="3" placeholder="Add details for the teacher..."></textarea></div>
+      <button class="btn btn-accent" onclick="toast('Leave request submitted')">Submit Request</button>
+    </div>
+    <div class="card">
+      <div class="card-head"><h3>Leave History</h3></div>
+      ${DB.leaves.map(l=>`<div class="list-row"><div class="list-icon"><img src='images/book.png' class='ic-img' alt=''></div><div style="flex:1;"><div style="font-weight:700;font-size:13px;">${l.date}</div><div style="font-size:12px;color:var(--gray-500);">${l.reason}</div></div>${statusBadge(l.status)}</div>`).join('')}
+    </div>
+  </div>`;
+}
+function renderParentMsg(){
+  return `${pageHeader("Messages","Conversation with "+DB.teacher.name+".")}
+  <div class="card">
+    <div style="max-height:340px;overflow-y:auto;margin-bottom:12px;">
+    ${DB.messages.map(m=>`<div class="msg-bubble ${m.sent?'sent':''}"><div style="font-size:13px;">${m.text}</div><div class="msg-meta">${m.from} · ${m.time}</div></div>`).join('')}
+    </div>
+    <div style="display:flex;gap:8px;"><input class="input" placeholder="Type a message..." id="msgInput"><button class="btn btn-accent" onclick="sendParentMsg()">Send</button></div>
+  </div>`;
+}
+function sendParentMsg(){
+  const el=document.getElementById('msgInput');
+  const v=(el&&el.value||'').trim();
+  if(!v)return;
+  DB.messages.push({from:"You (Parent)",text:v,time:"Just now",sent:true});
+  render();
+}
+function renderParentRemarks(){
+  const list=DB.remarks.filter(r=>r.student==='Rohit Verma');
+  return `${pageHeader("Teacher Remarks","Remarks shared by teachers about "+DB.parentChild.name+".")}
+  <div class="card">${list.length?list.map(r=>`<div class="list-row"><div class="list-icon"><img src='images/contract.png' class='ic-img' alt=''></div><div style="flex:1;"><div style="font-weight:700;font-size:13px;">${r.remark}</div><div style="font-size:12px;color:var(--gray-500);">— ${DB.teacher.name}, ${r.date}</div></div></div>`).join(''):"<div class=\"empty-state\"><div class=\"ic\"><img src='images/contract.png' class='ic-img' alt=''></div>No remarks shared yet.</div>"}</div>`;
+}
+
+/* ================= ADMIN ================= */
+function renderAdmission(){
+  const admTab=state.tab.adm||'student';
+  return `
+  ${pageHeader("Admission Management","Review applications and manage new admissions.")}
+  <div class="grid grid-2" style="align-items:start;">
+    <div class="card">
+      <div class="card-head"><h3>New Admission Form</h3></div>
+      <div class="tabs">
+        <button class="tab-btn ${admTab==='student'?'active':''}" onclick="setTab('adm','student')">Student Details</button>
+        <button class="tab-btn ${admTab==='parent'?'active':''}" onclick="setTab('adm','parent')">Parent Details</button>
+        <button class="tab-btn ${admTab==='academic'?'active':''}" onclick="setTab('adm','academic')">Academic</button>
+      </div>
+      ${admTab==='student'?`
+        <div class="form-grid"><div class="field"><label>Student Name</label><input class="input"></div><div class="field"><label>Date of Birth</label><input type="date" class="input"></div>
+        <div class="field"><label>Address</label><input class="input"></div><div class="field"><label>Emergency Contact</label><input class="input"></div></div>`:
+      admTab==='parent'?`
+        <div class="form-grid"><div class="field"><label>Parent Name</label><input class="input"></div><div class="field"><label>Contact Number</label><input class="input"></div>
+        <div class="field"><label>Email</label><input class="input"></div><div class="field"><label>Previous School</label><input class="input"></div></div>`:
+        `<div class="form-grid"><div class="field"><label>Class</label><select class="input"><option>Class 8</option><option>Class 9</option><option>Class 10</option></select></div>
+        <div class="field"><label>Course</label><select class="input"><option>Foundation</option><option>Board Prep</option><option>JEE Foundation</option></select></div>
+        <div class="field"><label>Subjects</label><input class="input" placeholder="Mathematics, Science"></div>
+        <div class="field"><label>Admission Fee</label><input class="input" placeholder="₹15,000"></div></div>`}
+      <button class="btn btn-accent" onclick="toast('Admission application saved')">Save Application</button>
+    </div>
+    <div class="card">
+      <div class="card-head"><h3>Applications</h3></div>
+      ${DB.admissions.map((a,i)=>`
+        <div class="list-row"><div class="list-icon"><img src='images/graduate-avatar.png' class='ic-img' alt=''></div>
+        <div style="flex:1;"><div style="font-weight:700;font-size:13px;">${a.name}</div><div style="font-size:12px;color:var(--gray-500);">${a.cls} · ${a.course} · ${a.date}</div></div>
+        ${a.status==='Pending'?`<button class="btn btn-accent btn-sm" onclick="approveAdmission(${i})">Approve</button>`:statusBadge(a.status)}
+        </div>`).join('')}
+    </div>
+  </div>`;
+}
+function setTab(group,val){state.tab[group]=val;render();}
+function approveAdmission(i){DB.admissions[i].status='Approved';DB.admissions[i].id='NWC-S-1'+(10+i);render();}
+
+function renderEnquiry(){
+  return `
+  ${pageHeader("Enquiries / Lead Management","Track prospective students from first enquiry to admission.")}
+  <div class="card" style="margin-bottom:16px;">
+    <div class="card-head"><h3>New Enquiry</h3></div>
+    <div class="form-grid">
+      <div class="field"><label>Name</label><input class="input"></div><div class="field"><label>Phone</label><input class="input"></div>
+      <div class="field"><label>Parent Name</label><input class="input"></div><div class="field"><label>Interested Class</label><input class="input"></div>
+      <div class="field"><label>Interested Course</label><input class="input"></div><div class="field"><label>Source</label><select class="input"><option>Walk-in</option><option>Reference</option><option>Instagram Ad</option><option>Google</option><option>Other</option></select></div>
+      <div class="field"><label>Follow-up Date</label><input type="date" class="input"></div><div class="field"><label>Status</label><select class="input"><option>New</option><option>Follow-up Due</option><option>Converted</option><option>Lost</option></select></div>
+    </div>
+    <div class="field"><label>Notes</label><textarea class="input" rows="2"></textarea></div>
+    <button class="btn btn-accent" onclick="toast('Enquiry saved')">Save Enquiry</button>
+  </div>
+  <div class="card">
+    <div class="table-wrap"><table>
+      <tr><th>Name</th><th>Phone</th><th>Parent</th><th>Class/Course</th><th>Source</th><th>Date</th><th>Follow-up</th><th>Status</th></tr>
+      ${DB.enquiries.map(e=>`<tr><td style="font-weight:700;">${e.name}</td><td>${e.phone}</td><td>${e.parent}</td><td>${e.cls} · ${e.course}</td><td>${e.source}</td><td>${e.date}</td><td>${e.followup}</td><td>${statusBadge(e.status)}</td></tr>`).join('')}
+    </table></div>
+  </div>`;
+}
+
+function renderAdminLeave(){
+  return `${pageHeader("Leave Management","Institute-wide view of student leave requests.")}
+  <div class="card"><div class="table-wrap"><table><tr><th>Student</th><th>Date</th><th>Reason</th><th>Status</th><th>Action</th></tr>
+  ${DB.leaves.map((l,i)=>`<tr><td style="font-weight:700;">${l.student}</td><td>${l.date}</td><td>${l.reason}</td><td>${statusBadge(l.status)}</td>
+  <td>${l.status==='Pending'?`<button class="btn btn-accent btn-sm" onclick="setLeave(${i},'Approved')">Approve</button> <button class="btn btn-danger btn-sm" onclick="setLeave(${i},'Rejected')">Reject</button>`:'—'}</td></tr>`).join('')}
+  </table></div></div>`;
+}
+
+function renderHoliday(){
+  const map={"Public Holiday":"red","Coaching Holiday":"orange","Exam":"yellow","Event":"blue"};
+  return `${pageHeader("Holiday Calendar","Public holidays, coaching holidays, exam dates and events.")}
+  <div class="grid grid-2" style="align-items:start;">
+    <div class="card">
+      <div class="card-head"><h3>Upcoming Events</h3>${state.role==='admin'?'<button class="btn btn-accent btn-sm" onclick="openModal(\'addHoliday\')">+ Add Event</button>':''}</div>
+      ${DB.holidays.map(h=>`<div class="list-row"><div class="list-icon"><img src='images/schedule.png' class='ic-img' alt=''></div><div style="flex:1;"><div style="font-weight:700;font-size:13px;">${h.title}</div><div style="font-size:12px;color:var(--gray-500);">${h.date} 2026</div></div><span class="badge ${map[h.type]}">${h.type}</span></div>`).join('')}
+    </div>
+    <div class="card">
+      <div class="card-head"><h3>September 2026</h3></div>
+      <div class="calendar-grid">${monthCells()}</div>
+    </div>
+  </div>`;
+}
+
+function renderAdminAttendance(){
+  return `${pageHeader("Attendance Overview","Institute-wide attendance across batches and subjects.")}
+  <div class="grid grid-3" style="margin-bottom:16px;">
+    ${statCard("<img src='images/bar-graph.png' class='ic-img' alt=''>","Overall Attendance","84%")}${statCard("<img src='images/clock (1).png' class='ic-img' alt=''>","Students Flagged","3")}${statCard("<img src='images/school.png' class='ic-img' alt=''>","Batches Tracked",DB.batches.length)}
+  </div>
+  <div class="card"><div class="card-head"><h3>Batch-wise Attendance</h3></div>
+  ${DB.batches.map((b,i)=>`<div class="list-row"><div class="list-icon"><img src='images/school.png' class='ic-img' alt=''></div><div style="flex:1;font-weight:700;font-size:13px;">${b}</div>
+  <div class="progress-bar" style="width:140px;"><div class="progress-fill" style="width:${[88,79,91][i]}%;"></div></div><span style="font-size:12px;margin-left:8px;">${[88,79,91][i]}%</span></div>`).join('')}
+  </div>`;
+}
+
+function renderStudentMgmt(){
+  const q=(state.studentSearch||'').toLowerCase();
+  const clsFilter=state.studentClassFilter||'All';
+  let list=DB.students.filter(s=>(clsFilter==='All'||s.cls===clsFilter)&&(!q||s.name.toLowerCase().includes(q)||s.id.toLowerCase().includes(q)));
+  const classes=["All",...Array.from(new Set(DB.students.map(s=>s.cls)))];
+  return `
+  ${pageHeader("Student Management","Add new students, assign IDs, and keep every record up to date.")}
+  <div class="grid grid-4" style="margin-bottom:16px;">
+    ${statCard("<img src='images/graduate-avatar.png' class='ic-img' alt=''>","Total Students",DB.students.length,"Across "+DB.batches.length+" batches")}
+    ${statCard("<img src='images/school.png' class='ic-img' alt=''>","Classes Covered",classes.length-1,"")}
+    ${statCard("<img src='images/check.png' class='ic-img' alt=''>","Fees Paid",DB.students.filter(s=>s.fees==='Paid').length,"")}
+    ${statCard("⏳","Fees Pending",DB.students.filter(s=>s.fees==='Pending').length,"")}
+  </div>
+  <div class="card">
+    <div class="card-head">
+      <div><h3>All Students</h3><div class="sub">Search, filter, or add a new admission</div></div>
+      <button class="btn btn-accent" onclick="openModal('addStudent')">+ Add New Student</button>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;">
+      <input class="input" style="max-width:240px;" placeholder="Search by name or student ID..." value="${state.studentSearch||''}" oninput="state.studentSearch=this.value;render();">
+      <select class="input" style="max-width:180px;" onchange="state.studentClassFilter=this.value;render();">
+        ${classes.map(c=>`<option ${clsFilter===c?'selected':''}>${c}</option>`).join('')}
+      </select>
+    </div>
+    <div class="table-wrap"><table>
+      <tr><th>Student ID</th><th>Name</th><th>Class</th><th>Batch</th><th>Parent</th><th>Phone</th><th>Attendance</th><th>Fees</th><th></th></tr>
+      ${list.length?list.map(s=>{
+        const idx=DB.students.indexOf(s);
+        return `<tr><td style="font-weight:800;color:var(--navy-800);">${s.id}</td><td style="font-weight:700;">${s.name}</td><td>${s.cls}</td><td>${s.batch}</td>
+        <td>${s.parent||'—'}</td><td>${s.phone||'—'}</td><td>${s.attendance}%</td><td>${statusBadge(s.fees)}</td>
+        <td><button class="btn btn-outline btn-sm" onclick="openModal('editStudent','${s.id}')">Edit</button>
+        <button class="btn btn-danger btn-sm" onclick="removeStudent(${idx})">Remove</button></td></tr>`;
+      }).join(''):`<tr><td colspan="9"><div class="empty-state"><div class="ic">🔍</div>No students match your search.</div></td></tr>`}
+    </table></div>
+  </div>`;
+}
+function removeStudent(idx){
+  if(idx<0||idx>=DB.students.length)return;
+  const nm=DB.students[idx].name;
+  DB.students.splice(idx,1);
+  toast(nm+" removed from records");
+}
+function addStudentSubmit(){
+  const g=id=>document.getElementById(id);
+  const name=(g('nsName').value||'').trim();
+  if(!name){toast('Please enter the student name');return;}
+  const cls=g('nsClass').value, batch=g('nsBatch').value, parent=(g('nsParent').value||'').trim(), phone=(g('nsPhone').value||'').trim();
+  const id="NWC-S-"+(nextStudentSeq++);
+  DB.students.push({id,name,cls,batch,attendance:100,fees:"Pending",feeAmount:cls.includes('11')||cls.includes('12')?5500:4500,lastTest:0,homework:"Complete",trend:"flat",parent:parent||'—',phone:phone||'—'});
+  closeModal();
+  toast("Student added — ID "+id+" assigned");
+}
+function editStudentSubmit(id){
+  const s=DB.students.find(s=>s.id===id);
+  if(!s)return;
+  const g=k=>document.getElementById(k);
+  s.name=g('esName').value||s.name; s.cls=g('esClass').value; s.batch=g('esBatch').value;
+  s.parent=g('esParent').value||s.parent; s.phone=g('esPhone').value||s.phone;
+  closeModal();
+  toast("Student record updated");
+}
+function renderFeeMgmt(){
+  const filter=state.feeFilter||'All';
+  const list=DB.students.filter(s=>filter==='All'||s.fees===filter);
+  const collected=DB.students.filter(s=>s.fees==='Paid').reduce((a,s)=>a+(s.feeAmount||0),0);
+  const pending=DB.students.filter(s=>s.fees==='Pending').reduce((a,s)=>a+(s.feeAmount||0),0);
+  return `
+  ${pageHeader("Fee Management","Track collections, send reminders, and mark payments across every student.")}
+  <div class="grid grid-4" style="margin-bottom:16px;">
+    ${statCard("<img src='images/fees.png' class='ic-img' alt=''>","Collected This Month","₹"+collected.toLocaleString('en-IN'),"")}
+    ${statCard("⏳","Pending Amount","₹"+pending.toLocaleString('en-IN'),"")}
+    ${statCard("<img src='images/fees.png' class='ic-img' alt=''>","Students Paid",DB.students.filter(s=>s.fees==='Paid').length,"")}
+    ${statCard("<img src='images/clock (1).png' class='ic-img' alt=''>","Students Pending",DB.students.filter(s=>s.fees==='Pending').length,"")}
+  </div>
+  <div class="card">
+    <div class="card-head"><div><h3>Student Fee Ledger</h3><div class="sub">Click a status badge to toggle payment</div></div></div>
+    <div class="tabs">
+      ${["All","Paid","Pending"].map(f=>`<button class="tab-btn ${filter===f?'active':''}" onclick="state.feeFilter='${f}';render();">${f}</button>`).join('')}
+    </div>
+    <div class="table-wrap"><table>
+      <tr><th>Student ID</th><th>Name</th><th>Class / Batch</th><th>Parent Contact</th><th>Amount</th><th>Status</th><th></th></tr>
+      ${list.length?list.map(s=>`<tr><td style="font-weight:800;color:var(--navy-800);">${s.id}</td><td style="font-weight:700;">${s.name}</td><td>${s.cls} · ${s.batch}</td>
+      <td>${s.parent||'—'}<br><span style="color:var(--gray-500);font-size:11.5px;">${s.phone||''}</span></td><td>₹${(s.feeAmount||0).toLocaleString('en-IN')}</td>
+      <td>${statusBadge(s.fees)}</td>
+      <td><button class="btn ${s.fees==='Paid'?'btn-outline':'btn-accent'} btn-sm" onclick="toggleFee('${s.id}')">${s.fees==='Paid'?'Mark Pending':'Mark Paid'}</button>
+      <button class="btn btn-ghost btn-sm" onclick="toast('Reminder sent to '+'${s.parent||s.name}')">Remind</button></td></tr>`).join(''):`<tr><td colspan="7"><div class="empty-state"><div class="ic"><img src='images/fees.png' class='ic-img' alt=''></div>No records for this filter.</div></td></tr>`}
+    </table></div>
+  </div>`;
+}
+function toggleFee(id){
+  const s=DB.students.find(s=>s.id===id);
+  if(!s)return;
+  s.fees=s.fees==='Paid'?'Pending':'Paid';
+  render();
+  toast(s.name+"'s fee marked "+s.fees.toLowerCase());
+}
+
+/* ================= ATTENDANCE (TAKE ATTENDANCE) ================= */
+function attKey(cls,date){return cls+"|"+date;}
+function getAttendanceMap(cls,date){
+  const k=attKey(cls,date);
+  if(!DB.attendanceRecords[k]){
+    const map={};
+    DB.students.filter(s=>s.cls===cls).forEach(s=>{map[s.id]="Present";});
+    DB.attendanceRecords[k]=map;
+  }
+  return DB.attendanceRecords[k];
+}
+function selectAttendanceBatch(cls){state.attendanceBatch=cls;render();}
+function backToBatchPicker(){state.attendanceBatch=null;render();}
+function setAttendanceDate(v){state.attendanceDate=v;render();}
+function toggleAttendanceStudent(id){
+  const map=getAttendanceMap(state.attendanceBatch,state.attendanceDate);
+  map[id]=map[id]==='Present'?'Absent':'Present';
+  render();
+}
+function markAllAttendance(status){
+  const map=getAttendanceMap(state.attendanceBatch,state.attendanceDate);
+  Object.keys(map).forEach(id=>map[id]=status);
+  render();
+}
+function saveAttendanceRecord(){
+  toast("Attendance saved for "+state.attendanceBatch+" — "+formatDateNice(state.attendanceDate));
+}
+function formatDateNice(iso){
+  const d=new Date(iso+"T00:00:00");
+  return d.toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+}
+function renderAttendanceTaking(){
+  if(!state.attendanceBatch){
+    return `
+    ${pageHeader("Take Attendance","Choose a batch to mark today's attendance.")}
+    <div class="grid grid-3">
+      ${DB.classBatches.map(cls=>{
+        const count=DB.students.filter(s=>s.cls===cls).length;
+        return `<div class="card" style="cursor:pointer;text-align:center;padding:26px 16px;" onclick="selectAttendanceBatch('${cls}')">
+          <div style="width:52px;height:52px;border-radius:14px;background:var(--navy-100);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;"><img src='images/school.png' class='ic-img' alt='' style="width:26px;height:26px;"></div>
+          <div style="font-weight:800;font-size:16px;color:var(--navy-950);">${cls} Batch</div>
+          <div style="font-size:12.5px;color:var(--gray-500);margin-top:4px;">${count} student${count===1?'':'s'}</div>
+        </div>`;
+      }).join('')}
+    </div>`;
+  }
+  const cls=state.attendanceBatch;
+  const date=state.attendanceDate;
+  const students=DB.students.filter(s=>s.cls===cls);
+  const map=getAttendanceMap(cls,date);
+  const presentCount=Object.values(map).filter(v=>v==='Present').length;
+  const absentCount=students.length-presentCount;
+  return `
+  ${pageHeader(cls+" Batch — Attendance","Tick or untick each student, then save for the day.")}
+  <div class="card" style="margin-bottom:16px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+      <button class="btn btn-outline btn-sm" onclick="backToBatchPicker()">← Choose Different Batch</button>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <label style="font-size:12.5px;font-weight:700;color:var(--navy-900);">Date:</label>
+        <input type="date" class="input" style="width:auto;" value="${date}" onchange="setAttendanceDate(this.value)">
+        <button class="btn btn-accent btn-sm" onclick="markAllAttendance('Present')">Mark All Present</button>
+        <button class="btn btn-danger btn-sm" onclick="markAllAttendance('Absent')">Mark All Absent</button>
+      </div>
+    </div>
+  </div>
+  <div class="grid grid-3" style="margin-bottom:16px;">
+    ${statCard("<img src='images/graduate-avatar.png' class='ic-img' alt=''>","Total Students",students.length,"")}
+    ${statCard("<img src='images/check.png' class='ic-img' alt=''>","Present Today",presentCount,"")}
+    ${statCard("<img src='images/clock (1).png' class='ic-img' alt=''>","Absent Today",absentCount,"")}
+  </div>
+  <div class="card">
+    <div class="card-head"><div><h3>${formatDateNice(date)}</h3><div class="sub">${cls} Batch · ${students.length} students</div></div>
+    <button class="btn btn-primary" onclick="saveAttendanceRecord()">Save Attendance</button></div>
+    ${students.length?students.map(s=>{
+      const st=map[s.id];
+      return `<div class="list-row">
+        <div class="list-icon"><img src='images/graduate-avatar.png' class='ic-img' alt=''></div>
+        <div style="flex:1;"><div style="font-weight:700;font-size:13.5px;">${s.name}</div><div style="font-size:12px;color:var(--gray-500);">${s.id} · ${s.batch}</div></div>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;">
+          <input type="checkbox" ${st==='Present'?'checked':''} onchange="toggleAttendanceStudent('${s.id}')" style="width:18px;height:18px;accent-color:var(--navy-800);">
+          <span class="badge ${st==='Present'?'green':'red'}">${st}</span>
+        </label>
+      </div>`;
+    }).join(''):`<div class="empty-state"><div class="ic"><img src='images/graduate-avatar.png' class='ic-img' alt=''></div>No students found in this batch yet.</div>`}
+  </div>`;
+}
+
+/* ================= MODALS ================= */
+function modalContent(m){
+  const name=m.arg||'';
+  const templates={
+    attendance:{title:"Take Attendance",body:`<div class="field"><label>Class / Batch</label><select class="input">${DB.batches.map(b=>`<option>${b}</option>`).join('')}</select></div>${DB.students.map(s=>`<div class="list-row"><div style="flex:1;font-size:13px;">${s.name}</div><label style="display:flex;gap:6px;align-items:center;font-size:12px;"><input type="checkbox" checked> Present</label></div>`).join('')}`,action:"Save Attendance"},
+    homework:{title:"Add Homework",body:`<div class="form-grid"><div class="field"><label>Class</label><select class="input"><option>Class 9</option><option>Class 10</option></select></div><div class="field"><label>Subject</label><select class="input"><option>Mathematics</option><option>Science</option></select></div></div><div class="field"><label>Homework Details</label><textarea class="input" rows="3" placeholder="e.g. Exercise 4.3, Q1-10"></textarea></div><div class="field"><label>Due Date</label><input type="date" class="input"></div>`,action:"Assign Homework"},
+    addNotice:{title:"Add Notice",body:`<div class="field"><label>Title</label><input class="input"></div><div class="field"><label>Category</label><select class="input"><option>Academic</option><option>Event</option><option>Holiday</option></select></div><div class="field"><label>Details</label><textarea class="input" rows="3"></textarea></div>`,action:"Publish Notice"},
+    announcement:{title:"Send Announcement",body:`<div class="field"><label>Recipients</label><select class="input"><option>All Parents</option><option>Class 10 Batch A</option></select></div><div class="field"><label>Message</label><textarea class="input" rows="3"></textarea></div>`,action:"Send"},
+    editProfile:{title:"Edit Profile",body:`<div class="form-grid"><div class="field"><label>Phone</label><input class="input" value="${DB.teacher.phone}"></div><div class="field"><label>Email</label><input class="input" value="${DB.teacher.email}"></div></div><div class="field"><label>Qualification</label><input class="input" value="${DB.teacher.qualification}"></div>`,action:"Save Changes"},
+    addLecture:{title:"Schedule Lecture",body:`<div class="form-grid"><div class="field"><label>Date</label><input type="date" class="input"></div><div class="field"><label>Time</label><input type="time" class="input"></div><div class="field"><label>Class</label><select class="input"><option>Class 9</option><option>Class 10</option></select></div><div class="field"><label>Batch</label><select class="input">${DB.batches.map(b=>`<option>${b}</option>`).join('')}</select></div><div class="field"><label>Subject</label><input class="input"></div><div class="field"><label>Room</label><input class="input"></div></div><div class="field"><label>Topic</label><input class="input"></div>`,action:"Schedule"},
+    remark:{title:"Add Remark for "+name,body:`<div class="field"><label>Remark</label><textarea class="input" rows="3"></textarea></div>`,action:"Save Remark"},
+    message:{title:"Message Parent of "+name,body:`<div class="field"><label>Message</label><textarea class="input" rows="3"></textarea></div>`,action:"Send Message"},
+    addHoliday:{title:"Add Calendar Event",body:`<div class="form-grid"><div class="field"><label>Date</label><input type="date" class="input"></div><div class="field"><label>Type</label><select class="input"><option>Public Holiday</option><option>Coaching Holiday</option><option>Exam</option><option>Event</option></select></div></div><div class="field"><label>Title</label><input class="input"></div>`,action:"Add Event"},
+    addStudent:{title:"Add New Student",body:`<div class="form-grid">
+        <div class="field"><label>Student Name</label><input id="nsName" class="input" placeholder="e.g. Ishaan Gupta"></div>
+        <div class="field"><label>Class</label><select id="nsClass" class="input"><option>Class 8</option><option>Class 9</option><option selected>Class 10</option><option>Class 11</option><option>Class 12</option></select></div>
+        <div class="field"><label>Batch</label><select id="nsBatch" class="input">${DB.batches.map(b=>`<option>${b}</option>`).join('')}</select></div>
+        <div class="field"><label>Parent / Guardian Name</label><input id="nsParent" class="input" placeholder="e.g. Suresh Gupta"></div>
+        <div class="field"><label>Parent Phone</label><input id="nsPhone" class="input" placeholder="+91 XXXXX XXXXX"></div>
+        <div class="field"><label>Student ID</label><input class="input" value="Auto-generated on save" disabled style="color:var(--gray-500);"></div>
+      </div>`,action:"Add Student",custom:"addStudentSubmit()"},
+    editStudent:{title:"Edit Student — "+name,body:(()=>{const s=DB.students.find(x=>x.id===name)||{};return `<div class="form-grid">
+        <div class="field"><label>Student Name</label><input id="esName" class="input" value="${s.name||''}"></div>
+        <div class="field"><label>Class</label><select id="esClass" class="input">${["Class 8","Class 9","Class 10","Class 11","Class 12"].map(c=>`<option ${s.cls===c?'selected':''}>${c}</option>`).join('')}</select></div>
+        <div class="field"><label>Batch</label><select id="esBatch" class="input">${DB.batches.map(b=>`<option ${s.batch===b?'selected':''}>${b}</option>`).join('')}</select></div>
+        <div class="field"><label>Parent / Guardian Name</label><input id="esParent" class="input" value="${s.parent&&s.parent!=='—'?s.parent:''}"></div>
+        <div class="field"><label>Parent Phone</label><input id="esPhone" class="input" value="${s.phone&&s.phone!=='—'?s.phone:''}"></div>
+        <div class="field"><label>Student ID</label><input class="input" value="${s.id||''}" disabled style="color:var(--gray-500);"></div>
+      </div>`;})(),action:"Save Changes",custom:"editStudentSubmit('"+name+"')"},
+  };
+  return templates[m.type]||{title:"",body:"",action:"Save"};
+}
+function openModal(type,arg){state.modal={type,arg};render();}
+function closeModal(){state.modal=null;render();}
+function submitModal(){
+  const t=modalContent(state.modal);
+  if(t.custom){ (new Function(t.custom))(); return; }
+  toast('Saved successfully');closeModal();
+}
+
+/* ================= TOAST ================= */
+function toast(msg){
+  let t=document.getElementById('toast');
+  if(!t){t=document.createElement('div');t.id='toast';t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--navy-950);color:#fff;padding:12px 20px;border-radius:10px;font-size:13px;font-weight:600;z-index:999;box-shadow:0 6px 20px rgba(0,0,0,.25);';document.body.appendChild(t);}
+  t.textContent=msg;t.style.opacity='1';
+  clearTimeout(window._toastTimer);
+  window._toastTimer=setTimeout(()=>{t.style.transition='opacity .4s';t.style.opacity='0';},1800);
+}
+
+/* ================= PAGE ROUTER ================= */
+const PAGES={
+  dash:renderTeacherDash, profile:renderProfile, classes:renderClasses, planner:renderPlanner,
+  syllabus:renderSyllabus, materials:renderMaterials, tests:renderTests, qbank:renderQBank,
+  marks:renderMarks, analytics:renderAnalytics, rank:renderRank, attention:renderAttention,
+  remarks:renderRemarks, attendanceAlerts:renderAttendanceAlerts, leave:renderLeaveTeacher, comm:renderComm,
+  parentDash:renderParentDash, parentAttendance:renderParentAttendance, parentHomework:renderParentHomework,
+  parentResults:renderParentResults, parentReport:renderParentReport, parentFees:renderParentFees,
+  parentTimetable:renderParentTimetable, parentNotices:renderParentNotices, parentLeave:renderParentLeave,
+  parentMsg:renderParentMsg, parentRemarks:renderParentRemarks,
+  admission:renderAdmission, enquiry:renderEnquiry, adminLeave:renderAdminLeave, holiday:renderHoliday,
+  adminAttendance:renderAdminAttendance, studentMgmt:renderStudentMgmt, feeMgmt:renderFeeMgmt,
+  attendance:renderAttendanceTaking,
+};
+const PAGE_TITLES={
+  dash:["Teacher Dashboard","Daily overview of classes & students"],profile:["My Profile","Personal & professional details"],
+  classes:["Classes & Lectures","Manage today's teaching schedule"],planner:["Teaching Planner","Plan lessons ahead of time"],
+  syllabus:["Syllabus Tracking","Chapter-wise progress"],materials:["Study Materials","Notes, worksheets & resources"],
+  tests:["Tests & Exams","Create and schedule assessments"],qbank:["Question Papers","Build papers from the question bank"],
+  marks:["Marks Entry","Enter & review test marks"],analytics:["Performance Analytics","Insights into student progress"],
+  rank:["Student Ranking","Class & batch rank lists"],attention:["Attention Required","Students who need support"],
+  remarks:["Teacher Remarks","Private notes on students"],attendanceAlerts:["Attendance Alerts","Threshold-based monitoring"],
+  leave:["Leave Requests","Approve student leave applications"],comm:["Announcements","Message parents directly"],
+  parentDash:["Parent Dashboard","Your child's overview"],parentAttendance:["Attendance",""],parentHomework:["Homework",""],
+  parentResults:["Test Results",""],parentReport:["Performance Report",""],parentFees:["Fees",""],
+  parentTimetable:["Timetable",""],parentNotices:["Notices",""],parentLeave:["Apply for Leave",""],
+  parentMsg:["Messages",""],parentRemarks:["Teacher Remarks",""],
+  admission:["Admission Management","Applications & new enrollments"],enquiry:["Enquiries","Lead tracking & follow-ups"],
+  adminLeave:["Leave Management","Institute-wide leave requests"],holiday:["Holiday Calendar","Events & important dates"],
+  adminAttendance:["Attendance Overview","Institute-wide attendance"],
+  studentMgmt:["Student Management","Add students, assign IDs & manage records"],
+  feeMgmt:["Fee Management","Track and collect fees across every student"],
+  attendance:["Take Attendance","Mark daily attendance batch by batch"],
+};
+
+/* ================= MAIN RENDER ================= */
+function render(){
+  const app=document.getElementById('app');
+  document.body.classList.toggle('custom-cursor', !state.authed);
+
+  if(!state.authed){
+    app.innerHTML = state.view==='login' ? renderLogin() : renderLanding();
+    if(state.view==='landing'){ initLandingEffects(); } else { initCursor(); }
+    return;
+  }
+
+  if(!NAV[state.role].some(g=>g.items.some(i=>i.id===state.page))){
+    state.page=DEFAULT_PAGE[state.role];
+  }
+  const roleLabel={teacher:"Teacher",parent:"Parent",admin:"Admin"};
+  const initials={teacher:"AS",parent:"RV",admin:"AD"}[state.role];
+  const title=PAGE_TITLES[state.page]?PAGE_TITLES[state.page][0]:"";
+
+  app.innerHTML=`
+  <div class="sidebar ${state.sidebarOpen?'open':''}">
+    <div class="brand"><img class="brand-logo-img" src="images/logo-full.png" alt="New Way Coaching Classes"></div>
+    <div class="role-switch">
+      ${["teacher","parent","admin"].map(r=>`<button class="${state.role===r?'active':''}" onclick="switchRole('${r}')">${roleLabel[r]}</button>`).join('')}
+    </div>
+    ${NAV[state.role].map(g=>`
+      <div class="nav-group">
+        <div class="nav-label">${g.group}</div>
+        ${g.items.map(it=>`<div class="nav-item ${state.page===it.id?'active':''}" onclick="goPage('${it.id}')">
+          <span class="nav-icon">${it.icon}</span><span>${it.label}</span>${it.badge?`<span class="nav-badge">${it.badge}</span>`:''}
+        </div>`).join('')}
+      </div>`).join('')}
+    <div class="sidebar-footer">© 2026 New Way Coaching Classes<br>Institute Management System v1.0</div>
+  </div>
+  <div class="main">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <button class="hamburger" onclick="toggleSidebar()">☰</button>
+        <div><h1>${title}</h1><div class="sub">${PAGE_TITLES[state.page]?PAGE_TITLES[state.page][1]:''}</div></div>
+      </div>
+      <div class="topbar-right">
+        <button class="btn btn-outline btn-sm" onclick="goLanding()"><img src='images/house.png' class='ic-img' alt=''> View Website</button>
+        <div class="icon-btn"><img src='images/clock (1).png' class='ic-img' alt=''><span class="dot"></span></div>
+        <div class="avatar" title="${CREDENTIALS[state.role]?CREDENTIALS[state.role].name:''}">${initials}</div>
+        <button class="logout-btn" title="Logout" onclick="logout()">⏻</button>
+      </div>
+    </div>
+    <div class="content">${(PAGES[state.page]||renderTeacherDash)()}</div>
+  </div>
+  ${state.modal?renderModal():''}
+  `;
+}
+function renderModal(){
+  const t=modalContent(state.modal);
+  return `<div class="modal-overlay" onclick="if(event.target===this)closeModal()">
+    <div class="modal"><span class="close" onclick="closeModal()">&times;</span><h3>${t.title}</h3><div style="margin-top:14px;">${t.body}</div>
+    <div style="margin-top:16px;display:flex;gap:8px;justify-content:flex-end;"><button class="btn btn-outline" onclick="closeModal()">Cancel</button><button class="btn btn-accent" onclick="submitModal()">${t.action}</button></div></div>
+  </div>`;
+}
+function goPage(p){state.page=p;state.sidebarOpen=false;render();window.scrollTo(0,0);}
+function switchRole(r){state.role=r;state.page=DEFAULT_PAGE[r];state.sidebarOpen=false;render();}
+function toggleSidebar(){state.sidebarOpen=!state.sidebarOpen;render();}
+
+/* ================= PUBLIC SITE: NAV / AUTH ================= */
+function goLanding(){state.authed=false;state.view='landing';state.loginError='';window.scrollTo(0,0);render();}
+function goLogin(role){state.view='login';state.loginRole=role||'admin';state.loginError='';window.scrollTo(0,0);render();}
+function setLoginRole(r){state.loginRole=r;state.loginError='';render();}
+function logout(){state.authed=false;state.view='landing';state.page='dash';toast('Logged out successfully');window.scrollTo(0,0);render();}
+function tryLogin(e){
+  if(e&&e.preventDefault)e.preventDefault();
+  const u=(document.getElementById('loginUser').value||'').trim();
+  const p=(document.getElementById('loginPass').value||'').trim();
+  const role=state.loginRole;
+  const cred=CREDENTIALS[role];
+  if(cred && u.toLowerCase()===cred.username && p===cred.password){
+    state.authed=true;state.role=role;state.page=DEFAULT_PAGE[role];state.loginError='';
+    window.scrollTo(0,0);render();
+    toast('Welcome back, '+cred.name+'!');
+  }else{
+    state.loginError='Incorrect username or password for the selected portal.';
+    render();
+  }
+  return false;
+}
+function enquirySubmit(e){
+  if(e&&e.preventDefault)e.preventDefault();
+  toast("Thanks! Our counsellor will call you shortly.");
+  const f=document.getElementById('enquiryForm');
+  if(f)f.reset();
+  return false;
+}
+
+/* ================= CUSTOM CURSOR ================= */
+function initCursor(){
+  if(window.matchMedia('(hover:none),(pointer:coarse)').matches)return;
+  let dot=document.getElementById('cursorDot'), ring=document.getElementById('cursorRing');
+  if(!dot){dot=document.createElement('div');dot.id='cursorDot';document.body.appendChild(dot);}
+  if(!ring){ring=document.createElement('div');ring.id='cursorRing';document.body.appendChild(ring);}
+  let rx=window.innerWidth/2, ry=window.innerHeight/2;
+  if(!window._cursorBound){
+    window._cursorBound=true;
+    document.addEventListener('mousemove',e=>{
+      const d=document.getElementById('cursorDot'), r=document.getElementById('cursorRing');
+      if(d){d.style.left=e.clientX+'px';d.style.top=e.clientY+'px';}
+      rx=e.clientX;ry=e.clientY;
+      const hoverTarget=e.target.closest && e.target.closest('a,button,.nav-item,.lp-course-card,.lp-portal-btn,.tab-btn,input,select,textarea,.brand,.lp-header,.lp-nav a');
+      if(r)r.classList.toggle('cur-hover', !!hoverTarget);
+    });
+    (function loop(){
+      const r=document.getElementById('cursorRing');
+      if(r){
+        const cl=parseFloat(r.style.left||rx), ct=parseFloat(r.style.top||ry);
+        const nl=isNaN(cl)?rx:cl+(rx-cl)*0.18, nt=isNaN(ct)?ry:ct+(ry-ct)*0.18;
+        r.style.left=nl+'px';r.style.top=nt+'px';
+      }
+      requestAnimationFrame(loop);
+    })();
+  }
+}
+
+/* ================= LANDING PAGE EFFECTS ================= */
+function initLandingEffects(){
+  // Reveal-on-scroll is set up FIRST and defensively, so content can never
+  // get stuck invisible even if something else below throws an error.
+  try{
+    const reveal=document.querySelectorAll('.lp-reveal');
+    if('IntersectionObserver' in window){
+      const io=new IntersectionObserver((entries)=>{
+        entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in-view'); io.unobserve(en.target); } });
+      },{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+      reveal.forEach(el=>io.observe(el));
+    } else {
+      reveal.forEach(el=>el.classList.add('in-view'));
+    }
+    // Safety net: if for any reason an element never gets flagged in-view
+    // (slow layout, missed intersection, etc.) force it visible so the
+    // page never shows blank/white sections.
+    setTimeout(()=>reveal.forEach(el=>el.classList.add('in-view')), 1800);
+  }catch(err){
+    document.querySelectorAll('.lp-reveal').forEach(el=>el.classList.add('in-view'));
+  }
+  try{
+    const header=document.querySelector('.lp-header');
+    const onScroll=()=>{ if(header) header.classList.toggle('scrolled', window.scrollY>30); };
+    window.addEventListener('scroll',onScroll);
+    onScroll();
+  }catch(err){}
+  try{ initCursor(); }catch(err){}
+}
+function toggleLpNav(){
+  const nav=document.querySelector('.lp-nav');
+  if(nav)nav.classList.toggle('open');
+}
+function lpNavClose(){const nav=document.querySelector('.lp-nav');if(nav)nav.classList.remove('open');}
+
+render();
+</script>
+</body>
+</html>
