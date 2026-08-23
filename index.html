@@ -8,6 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<!-- ===== Firebase (real-time cross-device sync) ===== -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <style>
 :root{
   --navy-950:#0d0d3d;
@@ -265,6 +268,7 @@ table.att-grid tbody tr:nth-child(even) td.att-weekend{background:var(--navy-100
 .alert-box .ic .ic-img{width:18px;height:18px;margin-bottom:0;}
 h3 .ic-img,.card-head .ic-img{width:16px;height:16px;margin-bottom:0;}
 .logout-btn{width:36px;height:36px;border-radius:10px;background:#fdeceb;border:1px solid #f6cac3;color:var(--red);display:flex;align-items:center;justify-content:center;font-size:15px;}
+.sync-badge{font-size:11.5px;font-weight:700;color:var(--gray-500);display:flex;align-items:center;gap:5px;padding:6px 10px;border-radius:20px;background:var(--navy-50);white-space:nowrap;}
 
 /* ============================================================
    PUBLIC SITE (Landing + Login)
@@ -595,15 +599,56 @@ const ICONS = {
 let state={authed:false,view:"landing",loginRole:"admin",loginError:"",role:"teacher",page:"dash",sidebarOpen:false,modal:null,tab:{},navOpen:false,feeFilter:"All",attendanceBatch:null,attendanceMonth:todayISO().slice(0,7)};
 function todayISO(){const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,'0')+"-"+String(d.getDate()).padStart(2,'0');}
 
+/* ================= REAL-TIME SYNC (FIREBASE) =================
+   PASTE YOUR OWN FIREBASE CONFIG BELOW (from Firebase Console →
+   Project settings → Your apps → SDK setup and configuration).
+   Until you paste real values here, the app safely falls back to
+   this browser's local storage only (no cross-device sync). */
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT_ID.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+const FIREBASE_ENABLED = firebaseConfig.apiKey !== "YOUR_API_KEY";
+let fireDocRef=null, fireReady=false;
+if(FIREBASE_ENABLED){
+  try{
+    firebase.initializeApp(firebaseConfig);
+    fireDocRef=firebase.firestore().collection('coaching').doc('liveData');
+    fireReady=true;
+  }catch(err){ console.warn('Firebase init failed, using local storage only', err); }
+}
+
 /* ================= LOCAL PERSISTENCE =================
    Saves DB (students, batches, attendance, fees...) to the browser's
-   localStorage so records survive a page refresh or closing the tab.
-   This is a stopgap for real, cross-device storage — see the note above
-   PAGES for how to wire this up to a real backend/database instead. */
+   localStorage as an instant offline cache, AND (when Firebase is
+   configured above) pushes the same data to Firestore so every other
+   device/browser sees the update in real time. */
 const PERSIST_KEY='nwc_db_v1';
+let _syncStatus='offline'; // 'offline' | 'connecting' | 'live' | 'error'
+function updateSyncBadge(){
+  const el=document.getElementById('syncBadge');
+  if(!el) return;
+  const map={
+    offline:['●','Local only — Firebase not configured','var(--gray-500)'],
+    connecting:['●','Connecting…','var(--orange)'],
+    live:['●','Live — synced across devices','var(--green)'],
+    error:['●','Sync error — check Firebase setup','var(--red)']
+  };
+  const [dot,label,color]=map[_syncStatus];
+  el.innerHTML=`<span style="color:${color};">${dot}</span> ${label}`;
+}
 function persist(){
   try{ localStorage.setItem(PERSIST_KEY, JSON.stringify({DB, nextStudentSeq})); }
   catch(err){ console.warn('Could not save to localStorage', err); }
+  if(fireReady && fireDocRef){
+    fireDocRef.set({DB, nextStudentSeq, updatedAt: Date.now()})
+      .then(()=>{ _syncStatus='live'; updateSyncBadge(); })
+      .catch(err=>{ console.warn('Firebase sync failed', err); _syncStatus='error'; updateSyncBadge(); });
+  }
 }
 function loadPersisted(){
   try{
@@ -615,6 +660,28 @@ function loadPersisted(){
   }catch(err){ console.warn('Could not load saved data', err); }
 }
 loadPersisted();
+function initRealtimeSync(){
+  if(!fireReady || !fireDocRef){ _syncStatus='offline'; updateSyncBadge(); return; }
+  _syncStatus='connecting'; updateSyncBadge();
+  fireDocRef.onSnapshot(doc=>{
+    _syncStatus='live';
+    if(doc.exists){
+      const data=doc.data();
+      if(data && data.DB){
+        Object.keys(data.DB).forEach(k=>{ DB[k]=data.DB[k]; });
+        if(typeof data.nextStudentSeq==='number') nextStudentSeq=data.nextStudentSeq;
+        render();
+      }
+    }else{
+      // No document yet on the server — push what we have locally to create it.
+      fireDocRef.set({DB, nextStudentSeq, updatedAt: Date.now()}).catch(()=>{});
+    }
+    updateSyncBadge();
+  },err=>{
+    console.warn('Firebase listen failed', err);
+    _syncStatus='error'; updateSyncBadge();
+  });
+}
 
 const NAV = {
   teacher:[
@@ -2058,6 +2125,7 @@ function render(){
         <div><h1>${title}</h1><div class="sub">${PAGE_TITLES[state.page]?PAGE_TITLES[state.page][1]:''}</div></div>
       </div>
       <div class="topbar-right">
+        <span id="syncBadge" class="sync-badge"></span>
         <button class="btn btn-outline btn-sm" onclick="goLanding()"><img src='images/house.png' class='ic-img' alt=''> View Website</button>
         <div class="icon-btn"><img src='images/clock (1).png' class='ic-img' alt=''><span class="dot"></span></div>
         <div class="avatar" title="${CREDENTIALS[state.role]?CREDENTIALS[state.role].name:''}">${initials}</div>
@@ -2068,6 +2136,7 @@ function render(){
   </div>
   ${state.modal?renderModal():''}
   `;
+  updateSyncBadge();
 }
 function renderModal(){
   const t=modalContent(state.modal);
@@ -2144,6 +2213,7 @@ function toggleLpNav(){
 function lpNavClose(){const nav=document.querySelector('.lp-nav');if(nav)nav.classList.remove('open');}
 
 render();
+initRealtimeSync();
 </script>
 </body>
 </html>
